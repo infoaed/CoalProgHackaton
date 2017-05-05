@@ -1,0 +1,9 @@
+
+
+"Koduomanike maamaksu kaotamine",["maamaks","kodu",["omanik","koduomanik"]],["maksukoormus","kodualune","maksusoodustus","maksuvabastus"]
+
+"Tööohutus- ja kutsehaiguskindlustussüsteemi loomine",["tööohutus","kutsehaigus","kindlustus"],["kindlustussüsteem","tööandja","töökeskkond","töötaja","tervis"]
+
+"Ülikiire internet üle Eesti",[["fiiber","fiiberoptiline"],["maakond"]],["internet","maapiirkond","lairiba","ülikiire","infoühiskond","taristu"]
+
+"Isikuõiguste ja infovabaduse tagamine internetikasutuses",[["internet","infoühiskond],["isikuõigused","privaatsus","isikuandmed"]],["infovabadus","põhiõigused","e-teenused","internetikasutus","turvalisus"]

@@ -41,8 +41,7 @@ class base():
 	def initiate(self):
 		tables = ["CREATE TABLE sonad (id serial PRIMARY KEY, cnt integer, sona varchar);",
 					"CREATE TABLE sona_esinemine (sona varchar, syndmus_id integer, cnt integer);",
-					"CREATE TABLE tmp_sonad (sona varchar, );",
-					"CREATE TABLE tmp_syndmused (sona varchar, );"]
+					"CREATE TABLE tmp_sonad (sona varchar, );"]
 		for table in tables:
 			try:
 				cur = self.conn.cursor()
@@ -95,7 +94,7 @@ class base():
 		cur.copy_from(f2, 'sona_esinemine', columns=('sona', 'syndmus_id', 'cnt'))
 		self.conn.commit()
 		
-	def search(self, importantWords, words):
+	def search(self, words):
 		cur = self.conn.cursor()
 		
 		baseWords = []

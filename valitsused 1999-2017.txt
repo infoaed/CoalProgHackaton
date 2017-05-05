@@ -1,0 +1,8 @@
+42	Siim Kallase valitsus		28. jaanuar 2002 	10. aprill 2003		RE+KE
+43	Juhan Partsi valitsus		10. aprill 2003		13. aprill 2005		RP+RE+ERL
+44	Andrus Ansipi esimene valitsus	13. aprill 2005		5. aprill 2007		RE+KE+ERL
+45	Andrus Ansipi teine valitsus	5. aprill 2007		6. aprill 2011		RE+IRL(+SDE)
+46	Andrus Ansipi kolmas valitsus	6. aprill 2011		26. märts 2014		RE+IRL
+47	Taavi Rõivase esimene valitsus	26. märts 2014		9. aprill 2015		RE+SDE
+48	Taavi Rõivase teine valitsus	9. aprill 2015		22. november 2016	RE+SDE+IRL
+49	Jüri Ratase valitsus		22. november 2016				KE+SDE+IRL

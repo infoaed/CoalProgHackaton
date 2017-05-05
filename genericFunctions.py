@@ -41,16 +41,26 @@ class base():
 	def initiate(self):
 		tables = ["CREATE TABLE sonad (id serial PRIMARY KEY, cnt integer, sona varchar);",
 					"CREATE TABLE sona_esinemine (sona varchar, syndmus_id integer, cnt integer);",
-					"CREATE TABLE tmp_sonad (sona varchar, );"]
+					"CREATE TABLE tmp_sonad (sona varchar, wordType integer, important integer );",
+					"""CREATE FUNCTION multInt(integer, integer) RETURNS integer
+					AS 'select $1 * $2;'
+					LANGUAGE SQL
+					IMMUTABLE
+					RETURNS NULL ON NULL INPUT;
+					"""
+					"CREATE AGGREGATE mul(integer) ( SFUNC = multInt, STYPE=integer );",
+					"CREATE INDEX sona_index ON sona_esinemine(sona);",
+					"CREATE INDEX tmp_sona_index ON tmp_sonad(sona);"]
 		for table in tables:
 			try:
 				cur = self.conn.cursor()
 				cur.execute(table)
 				cur.close()
+				self.conn.commit()
+
 			except Exception as msg:
 				self.conn.rollback()
 				print msg
-		self.conn.commit()
 			
 			
 	def process(self, dateFrom, dateTo):
@@ -94,24 +104,47 @@ class base():
 		cur.copy_from(f2, 'sona_esinemine', columns=('sona', 'syndmus_id', 'cnt'))
 		self.conn.commit()
 		
-	def search(self, words):
+	def printAll(self, arr):
+		for row in arr:
+			print str(row) + '\n'
+		
+	def search(self, words, importants):
 		cur = self.conn.cursor()
 		
 		baseWords = []
 		f = StringIO.StringIO()
 		cur.execute("delete from tmp_sonad")
 		for word in words:
-			f.write(self.getBaseWord(word) + '\n')
+			f.write(self.getBaseWord(word[0]) + '\t' + str(word[1]) + '\t' + str(word[2]) + '\n')
 		f.seek(0)
-		cur.copy_from(f, 'tmp_sonad', columns=['sona'])
+		cur.copy_from(f, 'tmp_sonad', columns=['sona', 'important', 'wordType'])
 		cur.execute("select sum(cnt) from sonad s, tmp_sonad ts where s.sona = ts.sona")
 		print cur.fetchone()[0]
-		cur.execute("""select s.total, ps.tekst from (select sum(se.cnt) as total, se.syndmus_id from sona_esinemine se, tmp_sonad ts where ts.sona = se.sona group by se.syndmus_id) s, public.syndmus ps where ps.idsyndmus = s.syndmus_id order by s.total asc""")
+		
+		'''
+			Leian skoori iga s]na t[[biga. Seej'rel, n]uan k]igi important t[[pide olemasolu.
+		
+
+		cur.execute("""select sum(se.cnt) as cnt, ts.wordType, ts.important, se.syndmus_id from tmp_sonad ts, sona_esinemine se where ts.sona = se.sona  group by ts.wordType, ts.important, se.syndmus_id""")
+		
+		self.printAll(cur.fetchall())
+		
+		'''
+		
+		cur.execute("""select t.tekst, s.* from 
+			
+				(select sum(s.cnt) as total, sum(s.important) as totalImportants, s.syndmus_id from
+			
+				(select sum(se.cnt) as cnt, ts.wordType, ts.important, se.syndmus_id from sona_esinemine se, tmp_sonad ts where se.sona = ts.sona group by ts.wordType, ts.important, se.syndmus_id) 
+				
+				s group by s.syndmus_id) s
+				
+				, public.syndmus t where t.idsyndmus = s.syndmus_id and totalImportants >= %s order by total asc
+			"""%(importants))
 		
 		rows = cur.fetchall()
 		for row in rows:
-			print (row[1] + '\n' + str(row[0]))
-		
+			print (str(row[0]) + '\n' + str(row[1]) + '\n' + str(row[2]))
 		
 		
 							
@@ -122,7 +155,7 @@ class base():
 		fromDate = datetime.date(2011, 4, 6) # Year, Month, Day
 		toDate = datetime.date(2014, 3, 26) # Year, Month, Day
 		#self.process(fromDate, toDate)
-		self.search(['põhimõte', 'päevakord'])
+		self.search([('põhimõte', 1, 1), ('täname', 0, 3)], 1)#, ('päevakord', 0, 2)], 1)
 
 
 if __name__ == '__main__':

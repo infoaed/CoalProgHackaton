@@ -1,4 +1,4 @@
-from genereicFunctions import base
+from genericFunctions import base
 from pyvabamorf import analyze #needs: pip install pyvabamorf
 
 

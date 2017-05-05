@@ -3,14 +3,13 @@
 import re
 import psycopg2
 import datetime
-from pyvabamorf import analyze #needs: pip install pyvabamorf
 
 class base():
 	def __init__(self):
 		self.wordDict = {}
 	
 	def getBaseWord(self, word):
-		return analyze(word)[0]['analysis'][0]['lemma']
+		return word
 	
 	def processText(self, text):
 		words = re.split('. | |, |.\n', text)

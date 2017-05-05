@@ -19,9 +19,9 @@ cur = conn.cursor()
 fromDate = datetime.date(2010, 1, 1) # Year, Month, Day
 toDate = datetime.date(2011, 1, 1) # Year, Month, Day
 
-cur.execute("""SELECT tekst from public.syndmus where kuupaev > %s and kuupaev < %s LIMIT 10""", (fromDate, toDate))
+cur.execute("""SELECT * from sonad""", (fromDate, toDate))
 
-print cur.fetchone()
+print cur.fetchall()
 
 """
 syndmus - [('idsyndmus',), ('kuupaev',), ('loodud',), ('esineja',), ('tekst',), ('jrk',), ('must_steno',), ('link',), ('ems_id',), ('liik',), ('paevakord_id',), ('aeg_video_suhtes',), ('video_nahtav',), ('video_id',)]

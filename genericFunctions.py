@@ -41,7 +41,8 @@ class base():
 	def initiate(self):
 		tables = ["CREATE TABLE sonad (id serial PRIMARY KEY, cnt integer, sona varchar);",
 					"CREATE TABLE sona_esinemine (sona varchar, syndmus_id integer, cnt integer);",
-					"CREATE TABLE tmp_sonad (sona varchar);"]
+					"CREATE TABLE tmp_sonad (sona varchar, );",
+					"CREATE TABLE tmp_syndmused (sona varchar, );"]
 		for table in tables:
 			try:
 				cur = self.conn.cursor()
@@ -94,8 +95,9 @@ class base():
 		cur.copy_from(f2, 'sona_esinemine', columns=('sona', 'syndmus_id', 'cnt'))
 		self.conn.commit()
 		
-	def search(self, words):
+	def search(self, importantWords, words):
 		cur = self.conn.cursor()
+		
 		baseWords = []
 		f = StringIO.StringIO()
 		cur.execute("delete from tmp_sonad")
@@ -120,11 +122,12 @@ class base():
 
 		fromDate = datetime.date(2011, 4, 6) # Year, Month, Day
 		toDate = datetime.date(2014, 3, 26) # Year, Month, Day
-	
 		#self.process(fromDate, toDate)
 		self.search(['põhimõte', 'päevakord'])
-		
-B = base()
-B.initiate()
-B.testProcessing()
+
+
+if __name__ == '__main__':
+	B = base()
+	B.initiate()
+	B.testProcessing()
 

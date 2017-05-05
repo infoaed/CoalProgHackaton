@@ -84,10 +84,10 @@ class base():
 		for key in self.wordDict:
 			if not self.wordDict[key]['cnt']:
 				continue
-			f.write(str(self.wordDict[key]['cnt']) + '\t' + str(key) + '\n')
+			f.write(str(self.wordDict[key]['cnt']) + '\t' + key.encode('utf-8') + '\n')
 			for key2 in self.wordDict[key]:
 				if key2 != 'cnt' and self.wordDict[key][key2]:
-					f2.write(str(key) + '\t' + str(key2) + '\t' + str(self.wordDict[key][key2]) + '\n')
+					f2.write(key.encode('utf-8') + '\t' + str(key2) + '\t' + str(self.wordDict[key][key2]) + '\n')
 		f.seek(0)
 		f2.seek(0)
 		i = 0

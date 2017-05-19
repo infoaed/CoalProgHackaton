@@ -1,6 +1,6 @@
 # Open Progress
 
-Map election promises from coalition agreements/action plans to debates in parliamentary bodies to show real progress of governance based on actual data. This is the fork of [Guardians of Governance](http://www.praxis.ee/tood/valitsemise-valvurid/) ([in developer portfolio](http://pixel.ee/teema/valitsemise-valvurid))to make the process (in large part) automatic.
+Map election promises from coalition agreements/action plans to debates in parliamentary bodies to show real progress of governance based on actual data. This is the fork of [Guardians of Governance](http://www.praxis.ee/tood/valitsemise-valvurid/) ([in developer portfolio](http://pixel.ee/teema/valitsemise-valvurid)) to make the process (in large part) automatic.
 
 ![Guardians of Governance screenshot](https://github.com/infoaed/openprogress/blob/master/valvurid.jpg)
 

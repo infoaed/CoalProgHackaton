@@ -4,8 +4,10 @@ Map election promises from coalition agreements/action plans to real debates in 
 
 ![Guardians of Governance screenshot](https://github.com/infoaed/openprogress/blob/master/valvurid.jpg)
 
+Roadmap:
+
 * Detect/formalise keywords of coalition agreements/action plans of government for automatic search.
-* Natural language analysis of discussions in parliament (passing legal acts, information inquiries by opposition, press conferences, results of voting etc).
+* Natural language analysis and categorisation of discussions in parliament (passing legal acts, information inquiries by opposition, press conferences, results of voting etc).
 * Visualise results using progress bars and display/highlight parts of text that the results are based on.
 
 Details:
@@ -16,7 +18,7 @@ Details:
 
 The pitch for [Garage48 Open & Big Data hackathon](http://garage48.org/events/balticopenbigdata2017):
 
-* [Google Presentation](https://docs.google.com/presentation/d/1NdqRfQJ0I0RN7QnC_U9zdb1HfUPWep4qks-6D0_Yem4) / [PDF](https://github.com/infoaed/openprogress/blob/master/garage48-pitch.pdf)
+* [Google Presentation](https://docs.google.com/presentation/d/1NdqRfQJ0I0RN7QnC_U9zdb1HfUPWep4qks-6D0_Yem4) // [PDF](https://github.com/infoaed/openprogress/blob/master/garage48-pitch.pdf)
 
 This is first iteration to hack our democracy to open it up for more reasonable and measurable election promises.
 

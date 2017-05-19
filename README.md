@@ -7,7 +7,7 @@ Map election promises from coalition agreements/action plans to debates in parli
 Roadmap:
 
 * Detect/formalise keywords of coalition agreements/action plans of government for automatic search.
-* Natural language analysis and categorisation of discussions in parliament (passing legal acts, information inquiries by opposition, press conferences, results of voting etc).
+* Natural language analysis and categorisation of discussions in parliament (passing legal acts, information inquiries by opposition, press conferences, specialised commission protocols, document metadata, persons involved, results of voting etc).
 * Visualise results using progress bars and display/highlight parts of text that the results are based on.
 
 Details:

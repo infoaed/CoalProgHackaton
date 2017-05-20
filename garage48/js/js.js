@@ -6,7 +6,7 @@ function search() {
     results.empty();
     var mandatory = $("#mandatory").val().replace(/ /g, '');
     var optional = $("#optional").val().replace(/ /g, '');
-    $.getJSON("http://193.40.11.124/test/index.py?mandatory=" + mandatory + "&optional=" + optional, function (data) {
+    $.getJSON($("#processURL").attr("href") + "?mandatory=" + mandatory + "&optional=" + optional, function (data) {
         var items = [];
         $.each( data, function( key, val ) {
             items.push("<div class='divide64'></div>");

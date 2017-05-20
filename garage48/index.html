@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
         <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-        <style>
+		<style>
 			.center {
 				display: -webkit-flex;
 				display: flex;
@@ -19,6 +19,11 @@
 			.hand {
 				cursor: pointer;
 				cursor: hand;
+			}
+
+			mark{
+				background: orange;
+				color: black;
 			}
 
 			.unselectable {
@@ -134,80 +139,94 @@
 			<div class="divide64"></div>
 
 	    	<div class="section search">
-		    	<input class="search-input" placeholder="Otsing (eralda märksõnad komadega)">
+		    	<input class="search-input" id="mandatory" placeholder="Otsing (eralda märksõnad komadega)">
 
-		    	<input class="search-input" placeholder="Täpsem otsing">
+		    	<input class="search-input" id="optional" placeholder="Täpsem otsing">
 
-		    	<div class="search-button center hand">Otsi</div>
-	    	</div>
+		    	<div class="search-button center hand" onclick="search()">Otsi</div>
+			</div>
 
-	    	<div class="section drafts">
+			<div class="section drafts">
+			<div class="draft-count" style="display: none">Otsingu tulemusi: <b id="count">0</b></div>
+				<div id="results">
 
-	    		<div class="draft-count">Otsingu tulemusi: <b>27</b></div>
+	    		<!--<div class="divide64"></div>-->
 
-	    		<div class="divide64"></div>
+				<!--<div class="group draft">-->
+					<!--<div class="element event-title">-->
+						<!--<b>13:11 Looduskaitsealuste maade maamaksu kompenseerimine</b>-->
+					<!--</div>-->
 
-				<div class="group draft">
-					<div class="element event-title">
-						<b>13:11 Looduskaitsealuste maade maamaksu kompenseerimine</b>
-					</div>
+					<!--<div class="divide8"></div>-->
 
-					<div class="divide8"></div>
+					<!--<div class="element event-id">-->
+						<!--Sündmuse id: 924411-->
+					<!--</div>-->
 
-					<div class="element event-id">
-						Sündmuse id: 924411
-					</div>
+					<!--<div class="element event-content">-->
+<!--Aitäh, austatud eesistuja! Hea minister! Aprillis toimus Sotsiaaldemokraatliku Erakonna fraktsiooni visiit Harjumaale, mille raames paljud omavalitsused tõstatasid probleemi, et riik on justkui lubanud looduskaitsealuste maade maamaksuvabastust kompenseerida, aga siiamaani seda tehtud ei ole. Mõni nädal tagasi tutvustasid Keskkonnaministeeriumi esindajad Riigikogu keskkonnakomisjonile looduskaitse arengukava aastani 2020, mille alalõigus 2.7 on kirjas, et looduskaitselistest piirangutest tuleneva maamaksu vähendamise kompenseerimise süsteemi tuleks arendada nii, et see võimaldaks tulubaasi täielikku kompenseerimist omavalitsustele. Mõnes mõttes ministeeriumi ametnikud sattusid minu hinnangul pisut kimbatusse, sest nad ei osanud komisjonis päris täpselt selgitada, millises ulatuses on maamaksuvabastus tehtud ja kuidas kavatsetakse omavalitsustele need summad kompenseerida. Aitäh!-->
+					<!--</div>-->
 
-					<div class="element event-content">
-Aitäh, austatud eesistuja! Hea minister! Aprillis toimus Sotsiaaldemokraatliku Erakonna fraktsiooni visiit Harjumaale, mille raames paljud omavalitsused tõstatasid probleemi, et riik on justkui lubanud looduskaitsealuste maade maamaksuvabastust kompenseerida, aga siiamaani seda tehtud ei ole. Mõni nädal tagasi tutvustasid Keskkonnaministeeriumi esindajad Riigikogu keskkonnakomisjonile looduskaitse arengukava aastani 2020, mille alalõigus 2.7 on kirjas, et looduskaitselistest piirangutest tuleneva maamaksu vähendamise kompenseerimise süsteemi tuleks arendada nii, et see võimaldaks tulubaasi täielikku kompenseerimist omavalitsustele. Mõnes mõttes ministeeriumi ametnikud sattusid minu hinnangul pisut kimbatusse, sest nad ei osanud komisjonis päris täpselt selgitada, millises ulatuses on maamaksuvabastus tehtud ja kuidas kavatsetakse omavalitsustele need summad kompenseerida. Aitäh!
-					</div>
+					<!--<div class="divide16"></div>-->
+					<!--<div class="border"></div>-->
+				<!--</div>-->
 
-					<div class="divide16"></div>
-					<div class="border"></div>
+	    		<!--<div class="divide64"></div>-->
+
+				<!--<div class="group draft">-->
+					<!--<div class="element event-title">-->
+						<!--<b>13:11 Looduskaitsealuste maade maamaksu kompenseerimine</b>-->
+					<!--</div>-->
+
+					<!--<div class="divide8"></div>-->
+
+					<!--<div class="element event-id">-->
+						<!--Sündmuse id: 924411-->
+					<!--</div>-->
+
+					<!--<div class="element event-content">-->
+<!--Aitäh, austatud eesistuja! Hea minister! Aprillis toimus Sotsiaaldemokraatliku Erakonna fraktsiooni visiit Harjumaale, mille raames paljud omavalitsused tõstatasid probleemi, et riik on justkui lubanud looduskaitsealuste maade maamaksuvabastust kompenseerida, aga siiamaani seda tehtud ei ole. Mõni nädal tagasi tutvustasid Keskkonnaministeeriumi esindajad Riigikogu keskkonnakomisjonile looduskaitse arengukava aastani 2020, mille alalõigus 2.7 on kirjas, et looduskaitselistest piirangutest tuleneva maamaksu vähendamise kompenseerimise süsteemi tuleks arendada nii, et see võimaldaks tulubaasi täielikku kompenseerimist omavalitsustele. Mõnes mõttes ministeeriumi ametnikud sattusid minu hinnangul pisut kimbatusse, sest nad ei osanud komisjonis päris täpselt selgitada, millises ulatuses on maamaksuvabastus tehtud ja kuidas kavatsetakse omavalitsustele need summad kompenseerida. Aitäh!-->
+					<!--</div>-->
+
+					<!--<div class="divide16"></div>-->
+					<!--<div class="border"></div>-->
+				<!--</div>-->
+
+				<!--<div class="divide64"></div>-->
+
+				<!--<div class="group draft">-->
+					<!--<div class="element event-title">-->
+						<!--<b>13:11 Looduskaitsealuste maade maamaksu kompenseerimine</b>-->
+					<!--</div>-->
+
+					<!--<div class="divide8"></div>-->
+
+					<!--<div class="element event-id">-->
+						<!--Sündmuse id: 924411-->
+					<!--</div>-->
+
+					<!--<div class="element event-content">-->
+<!--Aitäh, austatud eesistuja! Hea minister! Aprillis toimus Sotsiaaldemokraatliku Erakonna fraktsiooni visiit Harjumaale, mille raames paljud omavalitsused tõstatasid probleemi, et riik on justkui lubanud looduskaitsealuste maade maamaksuvabastust kompenseerida, aga siiamaani seda tehtud ei ole. Mõni nädal tagasi tutvustasid Keskkonnaministeeriumi esindajad Riigikogu keskkonnakomisjonile looduskaitse arengukava aastani 2020, mille alalõigus 2.7 on kirjas, et looduskaitselistest piirangutest tuleneva maamaksu vähendamise kompenseerimise süsteemi tuleks arendada nii, et see võimaldaks tulubaasi täielikku kompenseerimist omavalitsustele. Mõnes mõttes ministeeriumi ametnikud sattusid minu hinnangul pisut kimbatusse, sest nad ei osanud komisjonis päris täpselt selgitada, millises ulatuses on maamaksuvabastus tehtud ja kuidas kavatsetakse omavalitsustele need summad kompenseerida. Aitäh!-->
+					<!--</div>-->
+
+					<!--<div class="divide16"></div>-->
+					<!--<div class="border"></div>-->
 				</div>
-
-	    		<div class="divide64"></div>
-
-				<div class="group draft">
-					<div class="element event-title">
-						<b>13:11 Looduskaitsealuste maade maamaksu kompenseerimine</b>
-					</div>
-
-					<div class="divide8"></div>
-
-					<div class="element event-id">
-						Sündmuse id: 924411
-					</div>
-
-					<div class="element event-content">
-Aitäh, austatud eesistuja! Hea minister! Aprillis toimus Sotsiaaldemokraatliku Erakonna fraktsiooni visiit Harjumaale, mille raames paljud omavalitsused tõstatasid probleemi, et riik on justkui lubanud looduskaitsealuste maade maamaksuvabastust kompenseerida, aga siiamaani seda tehtud ei ole. Mõni nädal tagasi tutvustasid Keskkonnaministeeriumi esindajad Riigikogu keskkonnakomisjonile looduskaitse arengukava aastani 2020, mille alalõigus 2.7 on kirjas, et looduskaitselistest piirangutest tuleneva maamaksu vähendamise kompenseerimise süsteemi tuleks arendada nii, et see võimaldaks tulubaasi täielikku kompenseerimist omavalitsustele. Mõnes mõttes ministeeriumi ametnikud sattusid minu hinnangul pisut kimbatusse, sest nad ei osanud komisjonis päris täpselt selgitada, millises ulatuses on maamaksuvabastus tehtud ja kuidas kavatsetakse omavalitsustele need summad kompenseerida. Aitäh!
-					</div>
-
-					<div class="divide16"></div>
-					<div class="border"></div>
-				</div>
-
-				<div class="divide64"></div>
-
-				<div class="group draft">
-					<div class="element event-title">
-						<b>13:11 Looduskaitsealuste maade maamaksu kompenseerimine</b>
-					</div>
-
-					<div class="divide8"></div>
-
-					<div class="element event-id">
-						Sündmuse id: 924411
-					</div>
-
-					<div class="element event-content">
-Aitäh, austatud eesistuja! Hea minister! Aprillis toimus Sotsiaaldemokraatliku Erakonna fraktsiooni visiit Harjumaale, mille raames paljud omavalitsused tõstatasid probleemi, et riik on justkui lubanud looduskaitsealuste maade maamaksuvabastust kompenseerida, aga siiamaani seda tehtud ei ole. Mõni nädal tagasi tutvustasid Keskkonnaministeeriumi esindajad Riigikogu keskkonnakomisjonile looduskaitse arengukava aastani 2020, mille alalõigus 2.7 on kirjas, et looduskaitselistest piirangutest tuleneva maamaksu vähendamise kompenseerimise süsteemi tuleks arendada nii, et see võimaldaks tulubaasi täielikku kompenseerimist omavalitsustele. Mõnes mõttes ministeeriumi ametnikud sattusid minu hinnangul pisut kimbatusse, sest nad ei osanud komisjonis päris täpselt selgitada, millises ulatuses on maamaksuvabastus tehtud ja kuidas kavatsetakse omavalitsustele need summad kompenseerida. Aitäh!
-					</div>
-
-					<div class="divide16"></div>
-					<div class="border"></div>
 				</div>
 	    	</div>
     	</div>
+		<script src="https://code.jquery.com/jquery-3.2.1.js"
+				integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+				crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.js"
+				crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.10.1/jquery.mark.js"
+				crossorigin="anonymous" charset="UTF-8"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.10.1/mark.js"
+				crossorigin="anonymous"></script>
+
+		<script type="text/javascript" src="js/spin.js"></script>
+		<script type="text/javascript" src="js/util.js"></script>
+		<script type="text/javascript" src="js/js.js"></script>
     </body>
 </html>

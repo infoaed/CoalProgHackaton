@@ -1,0 +1,213 @@
+<html>
+    <head>
+        <title>Open Progress</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+        <style>
+			.center {
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-direction: row;
+				flex-direction: row;
+				-webkit-align-items: center;
+				align-items: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+			}
+
+			.hand {
+				cursor: pointer;
+				cursor: hand;
+			}
+
+			.unselectable {
+				-webkit-user-select: none;      
+				-moz-user-select: none;
+				-ms-user-select: none;
+				-o-user-select: none;
+				user-select: none;
+			}
+
+        	.divide8 {
+        		height: 8px;
+        	}
+
+        	.divide16 {
+        		height: 16px;
+        	}
+
+        	.divide32 {
+        		height: 32px;
+        	}
+
+        	.divide64 {
+        		height: 64px;
+        	}
+
+        	.border {
+        		width: 100%;
+        		border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+        	}
+
+        	* {
+        		font-family: 'Ubuntu', sans-serif;
+        	}
+
+        	html, body {
+        		line-height: 24px;
+        		max-width: 100%;
+        		overflow-x: hidden;
+        	}
+
+        	.view {
+        		width: 100vw;
+        	}
+
+        	input {
+        		outline: none;
+        		border: 1px solid rgba(0, 0, 0, 0.25);
+        		width: 400px;
+        		min-height: 48px;
+        		padding-left: 8px;
+        		font-size: 16px;
+        	}
+
+        	.title {
+        		font-size: 24px;
+        		text-align: center;
+        	}
+
+        	.search {
+        		display: flex;
+  				justify-content: center;
+    			align-items: center;
+        	}
+
+        	.search > input {
+        		margin-right: 4px;
+        	}
+
+        	.search > input:last-child {
+        		margin-left: 4px;
+        	}
+
+        	.search-button {
+        		min-width: 128px;
+        		min-height: 46px;
+        		background: white;
+        		color: blue;
+        		border: 1px solid blue;
+        	}
+
+        	.search-button:hover {
+        		background: blue;
+        		color: white;
+        		border: 1px solid blue;
+        	}
+
+        	.drafts {
+        		max-width: 928px;
+        		margin: 0 auto;
+        	}
+
+        	.draft-count {
+        		font-size: 12px;
+        	}
+
+        	.event-id {
+        		font-size: 12px;
+        	}
+        </style>
+    </head>
+    <body>
+    	<div class="view">
+
+    		<div class="divide64"></div>
+    		<div class="divide64"></div>
+
+    		<div class="section title">
+    			Open Progress
+    		</div>
+
+			<div class="divide64"></div>
+			<div class="divide64"></div>
+
+	    	<div class="section search">
+		    	<input class="search-input" placeholder="Otsing (eralda märksõnad komadega)">
+
+		    	<input class="search-input" placeholder="Täpsem otsing">
+
+		    	<div class="search-button center hand">Otsi</div>
+	    	</div>
+
+	    	<div class="section drafts">
+
+	    		<div class="draft-count">Otsingu tulemusi: <b>27</b></div>
+
+	    		<div class="divide64"></div>
+
+				<div class="group draft">
+					<div class="element event-title">
+						<b>13:11 Looduskaitsealuste maade maamaksu kompenseerimine</b>
+					</div>
+
+					<div class="divide8"></div>
+
+					<div class="element event-id">
+						Sündmuse id: 924411
+					</div>
+
+					<div class="element event-content">
+Aitäh, austatud eesistuja! Hea minister! Aprillis toimus Sotsiaaldemokraatliku Erakonna fraktsiooni visiit Harjumaale, mille raames paljud omavalitsused tõstatasid probleemi, et riik on justkui lubanud looduskaitsealuste maade maamaksuvabastust kompenseerida, aga siiamaani seda tehtud ei ole. Mõni nädal tagasi tutvustasid Keskkonnaministeeriumi esindajad Riigikogu keskkonnakomisjonile looduskaitse arengukava aastani 2020, mille alalõigus 2.7 on kirjas, et looduskaitselistest piirangutest tuleneva maamaksu vähendamise kompenseerimise süsteemi tuleks arendada nii, et see võimaldaks tulubaasi täielikku kompenseerimist omavalitsustele. Mõnes mõttes ministeeriumi ametnikud sattusid minu hinnangul pisut kimbatusse, sest nad ei osanud komisjonis päris täpselt selgitada, millises ulatuses on maamaksuvabastus tehtud ja kuidas kavatsetakse omavalitsustele need summad kompenseerida. Aitäh!
+					</div>
+
+					<div class="divide16"></div>
+					<div class="border"></div>
+				</div>
+
+	    		<div class="divide64"></div>
+
+				<div class="group draft">
+					<div class="element event-title">
+						<b>13:11 Looduskaitsealuste maade maamaksu kompenseerimine</b>
+					</div>
+
+					<div class="divide8"></div>
+
+					<div class="element event-id">
+						Sündmuse id: 924411
+					</div>
+
+					<div class="element event-content">
+Aitäh, austatud eesistuja! Hea minister! Aprillis toimus Sotsiaaldemokraatliku Erakonna fraktsiooni visiit Harjumaale, mille raames paljud omavalitsused tõstatasid probleemi, et riik on justkui lubanud looduskaitsealuste maade maamaksuvabastust kompenseerida, aga siiamaani seda tehtud ei ole. Mõni nädal tagasi tutvustasid Keskkonnaministeeriumi esindajad Riigikogu keskkonnakomisjonile looduskaitse arengukava aastani 2020, mille alalõigus 2.7 on kirjas, et looduskaitselistest piirangutest tuleneva maamaksu vähendamise kompenseerimise süsteemi tuleks arendada nii, et see võimaldaks tulubaasi täielikku kompenseerimist omavalitsustele. Mõnes mõttes ministeeriumi ametnikud sattusid minu hinnangul pisut kimbatusse, sest nad ei osanud komisjonis päris täpselt selgitada, millises ulatuses on maamaksuvabastus tehtud ja kuidas kavatsetakse omavalitsustele need summad kompenseerida. Aitäh!
+					</div>
+
+					<div class="divide16"></div>
+					<div class="border"></div>
+				</div>
+
+				<div class="divide64"></div>
+
+				<div class="group draft">
+					<div class="element event-title">
+						<b>13:11 Looduskaitsealuste maade maamaksu kompenseerimine</b>
+					</div>
+
+					<div class="divide8"></div>
+
+					<div class="element event-id">
+						Sündmuse id: 924411
+					</div>
+
+					<div class="element event-content">
+Aitäh, austatud eesistuja! Hea minister! Aprillis toimus Sotsiaaldemokraatliku Erakonna fraktsiooni visiit Harjumaale, mille raames paljud omavalitsused tõstatasid probleemi, et riik on justkui lubanud looduskaitsealuste maade maamaksuvabastust kompenseerida, aga siiamaani seda tehtud ei ole. Mõni nädal tagasi tutvustasid Keskkonnaministeeriumi esindajad Riigikogu keskkonnakomisjonile looduskaitse arengukava aastani 2020, mille alalõigus 2.7 on kirjas, et looduskaitselistest piirangutest tuleneva maamaksu vähendamise kompenseerimise süsteemi tuleks arendada nii, et see võimaldaks tulubaasi täielikku kompenseerimist omavalitsustele. Mõnes mõttes ministeeriumi ametnikud sattusid minu hinnangul pisut kimbatusse, sest nad ei osanud komisjonis päris täpselt selgitada, millises ulatuses on maamaksuvabastus tehtud ja kuidas kavatsetakse omavalitsustele need summad kompenseerida. Aitäh!
+					</div>
+
+					<div class="divide16"></div>
+					<div class="border"></div>
+				</div>
+	    	</div>
+    	</div>
+    </body>
+</html>

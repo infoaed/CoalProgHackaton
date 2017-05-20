@@ -157,7 +157,7 @@ class base():
 			optional[i] = self.getBaseWord(word)
 		
 		
-		sql = '''SELECT paevakord.idpaevakord, paevakord.pealkiri, syndmus.idsyndmus, syndmus.tekst, sonad.sona, sona_esinemine.cnt, sonad.cnt
+		sql = '''SELECT paevakord.idpaevakord, paevakord.pealkiri, syndmus.idsyndmus, syndmus.tekst, sonad.sona, sona_esinemine.cnt, sonad.cnt, syndmus.esineja
 FROM paevakord
 JOIN syndmus ON syndmus.paevakord_id=paevakord.idpaevakord
 JOIN sona_esinemine ON sona_esinemine.syndmus_id=syndmus.idsyndmus
@@ -175,7 +175,7 @@ JOIN sonad ON sonad.id=sona_esinemine.sona'''
 			if not row[0] in paevakords:
 				paevakords[row[0]] = {'rowdata': [], 'words': [], 'title': str(row[1].encode('utf8'), 'utf8'), 'id': row[0], 'events': {}}
 			if not row[2] in paevakords[row[0]]['events']:
-				paevakords[row[0]]['events'][row[2]] = {'text': str(row[3].encode('utf8'), 'utf8'), 'words': {}}
+				paevakords[row[0]]['events'][row[2]] = {'text': str(row[3].encode('utf8'), 'utf8'), 'words': {}, 'author': str(row[7].encode('utf8'), 'utf8')}
 			#paevakords[row[0]]['rowdata'].append(row)
 			paevakords[row[0]]['events'][row[2]]['words'][str(row[4].encode('utf8'), 'utf8')] = {'eventcount': row[5], 'totalcount': row[6]}
 			paevakords[row[0]]['words'].append(row[4])

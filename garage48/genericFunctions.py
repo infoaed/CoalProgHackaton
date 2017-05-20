@@ -16,6 +16,7 @@ class base():
 	
 	def processText(self, text):
 		text = text.replace(u'\xa0', u' ')
+		text = text.replace(u'\u2003', u' ')
 		words = re.split('[\.,!\?][ \n]| |[\(\)!\.\?\t\n<>]|<br/>', text)
 		returnWords = {}
 		for word in words:
@@ -32,6 +33,7 @@ class base():
 		'dbname': 'valitsus',
 		'user': 'postgres',
 		'password': 'pass',
+		'host': 'localhost',
 		}
 	
 	def addToWordDict(self, tmpDict, syndmus_id):
@@ -147,7 +149,7 @@ class base():
 			print (str(row[0]) + '\n' + str(row[1]) + '\n' + str(row[2]))
 		
 	def findData(self, mandatory, optional):
-		print ('paevakord.idpaevakord, syndmus.idsyndmus, sonad.sona, sona_esinemine.cnt, sonad.cnt \n')
+		#print ('paevakord.idpaevakord, syndmus.idsyndmus, sonad.sona, sona_esinemine.cnt, sonad.cnt \n')
 		cur = self.conn.cursor()
 		for i, word in enumerate(mandatory):
 			mandatory[i] = self.getBaseWord(word)
@@ -155,7 +157,7 @@ class base():
 			optional[i] = self.getBaseWord(word)
 		
 		
-		sql = '''SELECT paevakord.idpaevakord, syndmus.idsyndmus, sonad.sona, sona_esinemine.cnt, sonad.cnt
+		sql = '''SELECT paevakord.idpaevakord, paevakord.pealkiri, syndmus.idsyndmus, syndmus.tekst, sonad.sona, sona_esinemine.cnt, sonad.cnt
 FROM paevakord
 JOIN syndmus ON syndmus.paevakord_id=paevakord.idpaevakord
 JOIN sona_esinemine ON sona_esinemine.syndmus_id=syndmus.idsyndmus
@@ -167,14 +169,18 @@ JOIN sonad ON sonad.id=sona_esinemine.sona'''
 
 		cur.execute(sql, allWords)
 		rows = cur.fetchall()
-
+		
 		paevakords = dict()
 		for row in rows:
 			if not row[0] in paevakords:
-				paevakords[row[0]] = {'rowdata': [], 'words': []}
-			paevakords[row[0]]['rowdata'].append(row)
-			paevakords[row[0]]['words'].append(row[2])
+				paevakords[row[0]] = {'rowdata': [], 'words': [], 'title': str(row[1].encode('utf8'), 'utf8'), 'id': row[0], 'events': {}}
+			if not row[2] in paevakords[row[0]]['events']:
+				paevakords[row[0]]['events'][row[2]] = {'text': str(row[3].encode('utf8'), 'utf8'), 'words': {}}
+			#paevakords[row[0]]['rowdata'].append(row)
+			paevakords[row[0]]['events'][row[2]]['words'][str(row[4].encode('utf8'), 'utf8')] = {'eventcount': row[5], 'totalcount': row[6]}
+			paevakords[row[0]]['words'].append(row[4])
 		
+		returnData = []
 		for id in paevakords:
 			paevakord = paevakords[id]
 			valid = True
@@ -182,8 +188,12 @@ JOIN sonad ON sonad.id=sona_esinemine.sona'''
 				if not word in paevakord['words']:
 					valid = False
 			if valid:
-				for row in paevakord['rowdata']:
-					print(row, '\n')
+				returnData.append({'id': paevakord['id'], 'title': paevakord['title'], 'events': paevakord['events']})
+				#for row in paevakord['rowdata']:
+				#	for item in row:
+				#		print(str(item).encode('utf-8'))
+				#	print("\n")
+		return returnData
 			
 	
 	def testProcessing(self):

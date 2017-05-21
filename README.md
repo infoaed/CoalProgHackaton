@@ -6,9 +6,9 @@ Map election promises from coalition agreements/action plans to debates in parli
 
 Team:
 
-* Gea, Ailan — outstanding citizens (coalition agreement analysis & finetuning keywords/searches)
-* Artur, Ilja, Andrus — programmers (from back end to front end and back)
-* Märt — data scraper (actually just idling around and preparing for the pitches)
+* **Gea**, **Ailan** — outstanding citizens (coalition agreement analysis & finetuning keywords/searches)
+* **Artur**, **Ilja**, **Andrus** — programmers (from back end to front end and back)
+* **Märt** — data scraper (actually just idling around and preparing for the pitches)
 
 Prototype:
 

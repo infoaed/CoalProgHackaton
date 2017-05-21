@@ -164,7 +164,7 @@ JOIN sona_esinemine ON sona_esinemine.syndmus_id=syndmus.idsyndmus
 JOIN sonad ON sonad.id=sona_esinemine.sona
 LEFT JOIN paevakord_eelnoud ON paevakord_eelnoud.paevakord_id=paevakord.idpaevakord
 LEFT JOIN eelnoud ON eelnoud.id=paevakord_eelnoud.eelnoud_id
-WHERE syndmus.kuupaev >= \'2011-04-06 00:00:00\' AND syndmus.kuupaev <= \'2014-03-26 00:00:00\' '''
+WHERE syndmus.kuupaev >= \'2011-04-06 00:00:00\' AND syndmus.kuupaev <= \'2014-03-26 00:00:00\' AND paevakord.must_steno = 0 '''
 		
 		allWords = mandatory + optional
 		if len(allWords) > 0:
@@ -201,6 +201,9 @@ WHERE syndmus.kuupaev >= \'2011-04-06 00:00:00\' AND syndmus.kuupaev <= \'2014-0
 				#		print(str(item).encode('utf-8'))
 				#	print("\n")
 		
+		if not returnData:
+			return returnData
+		
 		lettersSql = 'SELECT paevakord_id, sum(length(tekst)) FROM syndmus WHERE (' + ' OR '.join(['paevakord_id=%s'] * len(returnIds)) + ') GROUP BY paevakord_id'
 		cur.execute(lettersSql, returnIds)
 		letterCounts = cur.fetchall()
@@ -226,8 +229,7 @@ WHERE syndmus.kuupaev >= \'2011-04-06 00:00:00\' AND syndmus.kuupaev <= \'2014-0
 			id = eventRow[0]
 			for returnRow in returnData:
 				if returnRow['id'] == eventRow[0]:
-					returnRow['eventCount'] = eventRow[1]
-			
+					returnRow['eventCount'] = eventRow[1]			
 				
 		return returnData
 			

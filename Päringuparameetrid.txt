@@ -2,8 +2,24 @@
 
 "Koduomanike maamaksu kaotamine",["maamaks","kodu",["omanik","koduomanik"]],["maksukoormus","kodualune","maksusoodustus","maksuvabastus"]
 
-"Tööohutus- ja kutsehaiguskindlustussüsteemi loomine",["tööohutus","kutsehaigus","kindlustus"],["kindlustussüsteem","tööandja","töökeskkond","töötaja","tervis"]
+"TÃ¶Ã¶ohutus- ja kutsehaiguskindlustussÃ¼steemi loomine",["tÃ¶Ã¶ohutus","kutsehaigus","kindlustus"],["kindlustussÃ¼steem","tÃ¶Ã¶andja","tÃ¶Ã¶keskkond","tÃ¶Ã¶taja","tervis"]
 
-"Ülikiire internet üle Eesti",[["fiiber","fiiberoptiline"],["maakond"]],["internet","maapiirkond","lairiba","ülikiire","infoühiskond","taristu"]
+"Ãœlikiire internet Ã¼le Eesti",[["fiiber","fiiberoptiline"],["maakond"]],["internet","maapiirkond","lairiba","Ã¼likiire","infoÃ¼hiskond","taristu"]
 
-"Isikuõiguste ja infovabaduse tagamine internetikasutuses",[["internet","infoühiskond],["isikuõigused","privaatsus","isikuandmed"]],["infovabadus","põhiõigused","e-teenused","internetikasutus","turvalisus"]
+"IsikuÃµiguste ja infovabaduse tagamine internetikasutuses",[["internet","infoÃ¼hiskond],["isikuÃµigused","privaatsus","isikuandmed"]],["infovabadus","pÃµhiÃµigused","e-teenused","internetikasutus","turvalisus"]
+
+"Kaasajastame intellektuaalse omandi Ãµiguse"
+
+"Koondame omavalitsuste infokeskkonnad infosÃ¼steemi, et lapsevanematel oleks mugav ja lihtne leida sobiv lastehoiuvÃµimalus"
+
+"Taastame isapuhkuse"
+
+"KÃµrghariduses kÃ¤ivitame 1. jaanuarist 2015 vajaduspÃµhiste Ãµppetoetuste sÃ¼steemi"
+
+"Ratifitseerime ÃœRO Puuetega Inimeste Konventsiooni"
+
+"Nutitelefoniga on vÃµimalik valida juba 2013. aasta valimistel"
+
+"VÃµtame vastu uue korruptsioonivastase seaduse, mis muu hulgas tÃ¤psustab ametiisikute mÃµistet ja muudab majandushuvide deklareerimise sisuliseks ja elektrooniliseks"
+
+"Ehitame valmis Eesti Rahva Muuseumi"

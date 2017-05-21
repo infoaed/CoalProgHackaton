@@ -157,15 +157,18 @@ class base():
 			optional[i] = self.getBaseWord(word)
 		
 		
-		sql = '''SELECT paevakord.idpaevakord, paevakord.pealkiri, syndmus.idsyndmus, syndmus.tekst, sonad.sona, sona_esinemine.cnt, sonad.cnt, syndmus.esineja
+		sql = '''SELECT paevakord.idpaevakord, paevakord.pealkiri, syndmus.idsyndmus, syndmus.tekst, sonad.sona, sona_esinemine.cnt, sonad.cnt, syndmus.esineja, eelnoud.title AS eelnoud_title, eelnoud.mark as eelnoud_mark, eelnoud.stage as eelnoud_stage, paevakord.kuupaev
 FROM paevakord
 JOIN syndmus ON syndmus.paevakord_id=paevakord.idpaevakord
 JOIN sona_esinemine ON sona_esinemine.syndmus_id=syndmus.idsyndmus
-JOIN sonad ON sonad.id=sona_esinemine.sona'''
+JOIN sonad ON sonad.id=sona_esinemine.sona
+LEFT JOIN paevakord_eelnoud ON paevakord_eelnoud.paevakord_id=paevakord.idpaevakord
+LEFT JOIN eelnoud ON eelnoud.id=paevakord_eelnoud.eelnoud_id
+WHERE syndmus.kuupaev >= \'2011-04-06 00:00:00\' AND syndmus.kuupaev <= \'2014-03-26 00:00:00\' AND paevakord.must_steno = 0 '''
 		
 		allWords = mandatory + optional
 		if len(allWords) > 0:
-			sql = sql + ' WHERE (' + ' OR '.join(['sonad.sona=%s'] * len(allWords)) + ')'
+			sql = sql + ' AND (' + ' OR '.join(['sonad.sona=%s'] * len(allWords)) + ')'
 
 		cur.execute(sql, allWords)
 		rows = cur.fetchall()
@@ -173,14 +176,18 @@ JOIN sonad ON sonad.id=sona_esinemine.sona'''
 		paevakords = dict()
 		for row in rows:
 			if not row[0] in paevakords:
-				paevakords[row[0]] = {'rowdata': [], 'words': [], 'title': str(row[1].encode('utf8'), 'utf8'), 'id': row[0], 'events': {}}
+				paevakords[row[0]] = {'rowdata': [], 'words': [], 'title': str(row[1].encode('utf8'), 'utf8'), 'id': row[0], 'events': {}, 'draft': {}, 'date': row[11]}
 			if not row[2] in paevakords[row[0]]['events']:
 				paevakords[row[0]]['events'][row[2]] = {'text': str(row[3].encode('utf8'), 'utf8'), 'words': {}, 'author': str(row[7].encode('utf8'), 'utf8')}
 			#paevakords[row[0]]['rowdata'].append(row)
 			paevakords[row[0]]['events'][row[2]]['words'][str(row[4].encode('utf8'), 'utf8')] = {'eventcount': row[5], 'totalcount': row[6]}
 			paevakords[row[0]]['words'].append(row[4])
+			if row[9]:
+				paevakords[row[0]]['draft'] = {'title': row[8], 'mark': row[9], 'stage': row[10]}
 		
 		returnData = []
+		returnIds = []
+		draftMap = {}
 		for id in paevakords:
 			paevakord = paevakords[id]
 			valid = True
@@ -188,11 +195,66 @@ JOIN sonad ON sonad.id=sona_esinemine.sona'''
 				if not word in paevakord['words']:
 					valid = False
 			if valid:
-				returnData.append({'id': paevakord['id'], 'title': paevakord['title'], 'events': paevakord['events']})
+				returnData.append({'id': paevakord['id'], 'title': paevakord['title'], 'events': paevakord['events'], 'draft': paevakord['draft'], 'date': paevakord['date'].strftime("%Y-%m-%d %H:%M:%S")})
+				returnIds.append(paevakord['id'])
+				if paevakord['draft']:
+					if not paevakord['draft']['mark'] in draftMap:
+						draftMap[paevakord['draft']['mark']] = []
+					draftMap[paevakord['draft']['mark']].append(paevakord['id'])
 				#for row in paevakord['rowdata']:
 				#	for item in row:
 				#		print(str(item).encode('utf-8'))
 				#	print("\n")
+		
+		if not returnData:
+			return returnData
+		
+		lettersSql = 'SELECT paevakord_id, sum(length(tekst)) FROM syndmus WHERE (' + ' OR '.join(['paevakord_id=%s'] * len(returnIds)) + ') GROUP BY paevakord_id'
+		cur.execute(lettersSql, returnIds)
+		letterCounts = cur.fetchall()
+		for letterRow in letterCounts:
+			id = letterRow[0]
+			for returnRow in returnData:
+				if returnRow['id'] == letterRow[0]:
+					returnRow['letterCount'] = letterRow[1]
+					
+		wordsSql = 'SELECT syndmus.paevakord_id, sum(sona_esinemine.cnt) FROM sona_esinemine JOIN syndmus ON sona_esinemine.syndmus_id=syndmus.idsyndmus WHERE (' + ' OR '.join(['syndmus.paevakord_id=%s'] * len(returnIds)) + ') GROUP BY syndmus.paevakord_id'
+		cur.execute(wordsSql, returnIds)
+		wordCounts = cur.fetchall()
+		for wordRow in wordCounts:
+			id = wordRow[0]
+			for returnRow in returnData:
+				if returnRow['id'] == wordRow[0]:
+					returnRow['wordCount'] = wordRow[1]
+					
+		eventsSql = 'SELECT paevakord_id, count(idsyndmus) FROM syndmus WHERE (' + ' OR '.join(['paevakord_id=%s'] * len(returnIds)) + ') GROUP BY paevakord_id'
+		cur.execute(eventsSql, returnIds)
+		eventsCounts = cur.fetchall()
+		for eventRow in eventsCounts:
+			id = eventRow[0]
+			for returnRow in returnData:
+				if returnRow['id'] == eventRow[0]:
+					returnRow['eventCount'] = eventRow[1]
+					
+		for draftMark in draftMap:
+			ids = draftMap[draftMark]
+			base = None
+			for i,returnRow in enumerate(returnData):
+				if not base and returnRow['id'] in ids:
+					base = returnRow
+					del returnData[i]
+				elif base and returnRow['id'] in ids:
+					base['letterCount'] = base['letterCount'] + returnRow['letterCount']
+					base['wordCount'] = base['wordCount'] + returnRow['wordCount']
+					base['eventCount'] = base['eventCount'] + returnRow['eventCount']
+					base['events'] = {**base['events'], **returnRow['events']}
+					del returnData[i]
+			
+			if base:
+				base['title'] = base['draft']['title']
+				returnData.append(base)
+			
+				
 		return returnData
 			
 	

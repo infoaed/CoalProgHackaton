@@ -2,7 +2,6 @@
 import re
 import psycopg2
 import datetime
-#import StringIO
 from io import StringIO
 from pprint import pprint
 
@@ -148,15 +147,25 @@ class base():
 		for row in rows:
 			print (str(row[0]) + '\n' + str(row[1]) + '\n' + str(row[2]))
 		
+	def findPromises(self):
+		cur = self.conn.cursor()
+		sql = 'SELECT pealkiri, mandatory, complementary FROM lubadus WHERE pealkiri IS NOT NULL'
+		cur.execute(sql, [])
+		rows = cur.fetchall()
+		returnData = []
+		for row in rows:
+			returnData.append({'pealkiri': row[0], 'mandatory': row[1].split(','), 'optional': row[2].split(',')})
+		return returnData
+		
 	def findData(self, mandatory, optional):
-		#print ('paevakord.idpaevakord, syndmus.idsyndmus, sonad.sona, sona_esinemine.cnt, sonad.cnt \n')
 		cur = self.conn.cursor()
 		for i, word in enumerate(mandatory):
 			mandatory[i] = self.getBaseWord(word)
 		for i, word in enumerate(optional):
 			optional[i] = self.getBaseWord(word)
 		
-		
+		#Get everything for keywords
+		#TODO add support for multiple eelnoud
 		sql = '''SELECT paevakord.idpaevakord, paevakord.pealkiri, syndmus.idsyndmus, syndmus.tekst, sonad.sona, sona_esinemine.cnt, sonad.cnt, syndmus.esineja, eelnoud.title AS eelnoud_title, eelnoud.mark as eelnoud_mark, eelnoud.stage as eelnoud_stage, paevakord.kuupaev
 FROM paevakord
 JOIN syndmus ON syndmus.paevakord_id=paevakord.idpaevakord
@@ -173,13 +182,13 @@ WHERE syndmus.kuupaev >= \'2011-04-06 00:00:00\' AND syndmus.kuupaev <= \'2014-0
 		cur.execute(sql, allWords)
 		rows = cur.fetchall()
 		
+		#Parse data into better format based on paevakord, events and drafts
 		paevakords = dict()
 		for row in rows:
 			if not row[0] in paevakords:
 				paevakords[row[0]] = {'rowdata': [], 'words': [], 'title': str(row[1].encode('utf8'), 'utf8'), 'id': row[0], 'events': {}, 'draft': {}, 'date': row[11]}
 			if not row[2] in paevakords[row[0]]['events']:
 				paevakords[row[0]]['events'][row[2]] = {'text': str(row[3].encode('utf8'), 'utf8'), 'words': {}, 'author': str(row[7].encode('utf8'), 'utf8')}
-			#paevakords[row[0]]['rowdata'].append(row)
 			paevakords[row[0]]['events'][row[2]]['words'][str(row[4].encode('utf8'), 'utf8')] = {'eventcount': row[5], 'totalcount': row[6]}
 			paevakords[row[0]]['words'].append(row[4])
 			if row[9]:
@@ -188,6 +197,7 @@ WHERE syndmus.kuupaev >= \'2011-04-06 00:00:00\' AND syndmus.kuupaev <= \'2014-0
 		returnData = []
 		returnIds = []
 		draftMap = {}
+		#Check than mandatory words exist and remove from output if not
 		for id in paevakords:
 			paevakord = paevakords[id]
 			valid = True
@@ -201,14 +211,11 @@ WHERE syndmus.kuupaev >= \'2011-04-06 00:00:00\' AND syndmus.kuupaev <= \'2014-0
 					if not paevakord['draft']['mark'] in draftMap:
 						draftMap[paevakord['draft']['mark']] = []
 					draftMap[paevakord['draft']['mark']].append(paevakord['id'])
-				#for row in paevakord['rowdata']:
-				#	for item in row:
-				#		print(str(item).encode('utf-8'))
-				#	print("\n")
-		
+					
 		if not returnData:
 			return returnData
 		
+		#Add letters count
 		lettersSql = 'SELECT paevakord_id, sum(length(tekst)) FROM syndmus WHERE (' + ' OR '.join(['paevakord_id=%s'] * len(returnIds)) + ') GROUP BY paevakord_id'
 		cur.execute(lettersSql, returnIds)
 		letterCounts = cur.fetchall()
@@ -217,7 +224,8 @@ WHERE syndmus.kuupaev >= \'2011-04-06 00:00:00\' AND syndmus.kuupaev <= \'2014-0
 			for returnRow in returnData:
 				if returnRow['id'] == letterRow[0]:
 					returnRow['letterCount'] = letterRow[1]
-					
+			
+		#Add words count
 		wordsSql = 'SELECT syndmus.paevakord_id, sum(sona_esinemine.cnt) FROM sona_esinemine JOIN syndmus ON sona_esinemine.syndmus_id=syndmus.idsyndmus WHERE (' + ' OR '.join(['syndmus.paevakord_id=%s'] * len(returnIds)) + ') GROUP BY syndmus.paevakord_id'
 		cur.execute(wordsSql, returnIds)
 		wordCounts = cur.fetchall()
@@ -226,7 +234,8 @@ WHERE syndmus.kuupaev >= \'2011-04-06 00:00:00\' AND syndmus.kuupaev <= \'2014-0
 			for returnRow in returnData:
 				if returnRow['id'] == wordRow[0]:
 					returnRow['wordCount'] = wordRow[1]
-					
+		
+		#Add events count
 		eventsSql = 'SELECT paevakord_id, count(idsyndmus) FROM syndmus WHERE (' + ' OR '.join(['paevakord_id=%s'] * len(returnIds)) + ') GROUP BY paevakord_id'
 		cur.execute(eventsSql, returnIds)
 		eventsCounts = cur.fetchall()
@@ -235,7 +244,8 @@ WHERE syndmus.kuupaev >= \'2011-04-06 00:00:00\' AND syndmus.kuupaev <= \'2014-0
 			for returnRow in returnData:
 				if returnRow['id'] == eventRow[0]:
 					returnRow['eventCount'] = eventRow[1]
-					
+		
+		#Merge draft readings into a single unit for every draft mark
 		for draftMark in draftMap:
 			ids = draftMap[draftMark]
 			base = None

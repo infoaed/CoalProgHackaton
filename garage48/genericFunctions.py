@@ -246,24 +246,34 @@ WHERE syndmus.kuupaev >= \'2011-04-06 00:00:00\' AND syndmus.kuupaev <= \'2014-0
 					returnRow['eventCount'] = eventRow[1]
 		
 		#Merge draft readings into a single unit for every draft mark
+		returnDataTmp = []
+		merged = {}
 		for draftMark in draftMap:
 			ids = draftMap[draftMark]
 			base = None
 			for i,returnRow in enumerate(returnData):
 				if not base and returnRow['id'] in ids:
 					base = returnRow
-					del returnData[i]
+					merged[returnRow['id']] = returnRow['id']
+					#del returnData[i]
 				elif base and returnRow['id'] in ids:
 					base['letterCount'] = base['letterCount'] + returnRow['letterCount']
 					base['wordCount'] = base['wordCount'] + returnRow['wordCount']
 					base['eventCount'] = base['eventCount'] + returnRow['eventCount']
 					base['events'] = {**base['events'], **returnRow['events']}
-					del returnData[i]
+					merged[returnRow['id']] = returnRow['id']
+					#del returnData[i]
 			
 			if base:
 				base['title'] = base['draft']['title']
-				returnData.append(base)
-			
+				#base['titletest'] = base['draft']['title']
+				#returnData.append(base)
+				returnDataTmp.append(base)
+		
+		for returnRow in returnData:
+			if returnRow['id'] not in merged:
+				returnDataTmp.append(returnRow)
+		returnData = returnDataTmp
 				
 		return returnData
 			

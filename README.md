@@ -4,6 +4,16 @@ Map election promises from coalition agreements/action plans to debates in parli
 
 ![Guardians of Governance screenshot](https://github.com/infoaed/openprogress/blob/master/valvurid.jpg)
 
+Team:
+
+* Gea, Ailan — outstanding citizens (coalition agreement analysis & finetuning keywords/searches)
+* Artur, Ilja, Andrus — programmers (from back end to front end and back)
+* Märt — data scraper (actually just idling around and preparing for the pitches)
+
+Prototype:
+
+* http://gov.infoaed.ee
+
 Roadmap:
 
 * Detect/formalise keywords of coalition agreements/action plans of government for automatic search.

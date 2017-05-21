@@ -187,6 +187,7 @@ WHERE syndmus.kuupaev >= \'2011-04-06 00:00:00\' AND syndmus.kuupaev <= \'2014-0
 		
 		returnData = []
 		returnIds = []
+		draftMap = {}
 		for id in paevakords:
 			paevakord = paevakords[id]
 			valid = True
@@ -196,6 +197,10 @@ WHERE syndmus.kuupaev >= \'2011-04-06 00:00:00\' AND syndmus.kuupaev <= \'2014-0
 			if valid:
 				returnData.append({'id': paevakord['id'], 'title': paevakord['title'], 'events': paevakord['events'], 'draft': paevakord['draft'], 'date': paevakord['date'].strftime("%Y-%m-%d %H:%M:%S")})
 				returnIds.append(paevakord['id'])
+				if paevakord['draft']:
+					if not paevakord['draft']['mark'] in draftMap:
+						draftMap[paevakord['draft']['mark']] = []
+					draftMap[paevakord['draft']['mark']].append(paevakord['id'])
 				#for row in paevakord['rowdata']:
 				#	for item in row:
 				#		print(str(item).encode('utf-8'))
@@ -229,7 +234,26 @@ WHERE syndmus.kuupaev >= \'2011-04-06 00:00:00\' AND syndmus.kuupaev <= \'2014-0
 			id = eventRow[0]
 			for returnRow in returnData:
 				if returnRow['id'] == eventRow[0]:
-					returnRow['eventCount'] = eventRow[1]			
+					returnRow['eventCount'] = eventRow[1]
+					
+		for draftMark in draftMap:
+			ids = draftMap[draftMark]
+			base = None
+			for i,returnRow in enumerate(returnData):
+				if not base and returnRow['id'] in ids:
+					base = returnRow
+					del returnData[i]
+				elif base and returnRow['id'] in ids:
+					base['letterCount'] = base['letterCount'] + returnRow['letterCount']
+					base['wordCount'] = base['wordCount'] + returnRow['wordCount']
+					base['eventCount'] = base['eventCount'] + returnRow['eventCount']
+					base['events'] = {**base['events'], **returnRow['events']}
+					del returnData[i]
+			
+			if base:
+				base['title'] = base['draft']['title']
+				returnData.append(base)
+			
 				
 		return returnData
 			

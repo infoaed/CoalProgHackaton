@@ -1,37 +1,60 @@
-vk = {"KONKURENTSIVÕIMELINE MAJANDUSKESKKOND":1,
-"EELARVE":2,
-"MAKSUNDUS":3,
-"TÖÖTURG":4,
-"ETTEVÕTLIKKUSE EDENDAMINE":5,
-"TARISTU":6,
-"RIIGIMAJANDUS":7,
-"ÕIGUSKAITSE":8,
-"EKSPORDI ERGUTAMINE":9,
-"FINANTSKESKKOND":10,
-"PERESÕBRALIK RIIK":11,
-"HARITUD EESTI":12,
-"AKTIIVNE TÖÖTURUPOLIITIKA. SOTSIAALNE TURVALISUS":13,
-"TERVE EESTI":14,
-"ENERGIAJULGEOLEK":15,
-"TRANSPORT":16,
-"E-RIIGIST I-RIIGIKS":17,
-"TURVALINE EESTI":18,
-"ÕIGUSKORD":19,
-"ÕIGUSKAITSE":20,
-"KULTUURIPOLIITIKA":21,
-"SPORT JA KEHAKULTUUR":22,
-"EESTI KEEL JA MEEL":23,
-"LÕIMUMINE":24,
-"ILUS JA PUHAS EESTI":25,
-"MAAELU EDENDAMINE":26,
-"VÄLISPOLIITIKA":27,
-"RIIGIKAITSE- JA JULGEOLEKUPOLIITIKA":28,
-"KODANIKE RIIK":29,
-"KODANIKUÜHENDUSED":30,
-"RIIGIHALDUS":31,
-"KOHALIK HALDUS":32,
-"PÕHISEADUS JA DEMOKRAATIA":33
+from pprint import pprint
+
+vk = {"KONKURENTSIVÕIMELINE MAJANDUSKESKKOND": [1,None],
+"EELARVE": [2,1],
+"MAKSUNDUS": [3,1],
+"TÖÖTURG": [4,1],
+"ETTEVÕTLIKKUSE EDENDAMINE": [5,1],
+"TARISTU": [6,1],
+"RIIGIMAJANDUS": [7,1],
+"ÕIGUSKAITSE": [8,1],
+"EKSPORDI ERGUTAMINE": [9,1],
+"FINANTSKESKKOND": [10,1],
+
+"PERESÕBRALIK RIIK": [11,None],
+
+"HARITUD EESTI": [12,None],
+
+"AKTIIVNE TÖÖTURUPOLIITIKA. SOTSIAALNE TURVALISUS": [13,None],
+
+"TERVE EESTI": [14,None],
+
+"ENERGIAJULGEOLEK": [15,None],
+
+"TRANSPORT": [16,None],
+
+"E-RIIGIST I-RIIGIKS": [17,None],
+
+"TURVALINE EESTI": [18,None],
+"ÕIGUSKORD": [19,18],
+"ÕIGUSKAITSE": [20,18],
+
+"KULTUURIPOLIITIKA": [21,None],
+
+"SPORT JA KEHAKULTUUR": [22,None],
+
+"EESTI KEEL JA MEEL": [23,None],
+
+"LÕIMUMINE": [24,None],
+
+"ILUS JA PUHAS EESTI": [25,None],
+
+"MAAELU EDENDAMINE": [26,None],
+
+"VÄLISPOLIITIKA": [27,None],
+
+"RIIGIKAITSE- JA JULGEOLEKUPOLIITIKA": [28,None],
+
+"KODANIKE RIIK": [29,None],
+"PÕHISEADUS JA DEMOKRAATIA": [33,29],
+"KODANIKUÜHENDUSED": [30,29],
+"RIIGIHALDUS": [31,29],
+"KOHALIK HALDUS": [32,29],
 }
+
+i=1
+
+l = {}
 
 txt = """KONKURENTSIVÕIMELINE MAJANDUSKESKKOND
 Valitsusliidu majanduspoliitika eesmärk on Eesti inimeste elatustaseme tõus. Selle eelduseks on stabiilne majanduskasv ja konkurentsivõimeline majandusstruktuur – just neist sõltuvad uued töökohad, pensionitõus, teenused lastega peredele, turvalisus ja heal tasemel haridus. Eesti majanduskasvu võtmeks on edenemine ülemaailmses väärtusahelas – Eestis tehtu ja loodu peab muutuma oluliselt väärtuslikumaks ja konkurentsivõimelisemaks. Töö tootlikkus ja hind peab kasvama – vaid sellisel juhul saavad kasvada ettevõtlustulu ja palgad. Prioriteetseks on just inimeste sissetulekute kasv, mis pikemas perspektiivis tagab ka avalike teenuste osutamiseks vajalike vahendite piisavuse.
@@ -84,9 +107,8 @@ viime ettevõtlusõppe põhihariduse õppekavasse ning tagame 2013. aastaks kõi
 TARISTU
 9. Energiajulgeoleku tagamine odavaima võimaliku hinnaga tarbijaile ja keskkonnale:
 tagame ettevõtetele ja tarbijatele odavaima võimaliku hinnaga elektrivarustuse, mitmekesistades ja hajutades energiatootmist, ergutades rohkem kasutama kodumaiseid taastuvaid energiaallikaid ning vähendades sõltuvust julgeolekuriske sisaldavast energia sisseostmisest kolmandatest riikidest.
-10. Eksporti ja ettevõtlust takistavate transpordi pudelikaelte kaotamine.
-arendame lennuühendusi eesmärgiga, et Tallinnast saab kõigisse suurematesse Euroopa
-ärikeskustesse lennata põhimõttel „hommikul sinna, õhtul tagasi";
+10. Eksporti ja ettevõtlust takistavate transpordi pudelikaelte kaotamine:
+arendame lennuühendusi eesmärgiga, et Tallinnast saab kõigisse suurematesse Euroopa ärikeskustesse lennata põhimõttel „hommikul sinna, õhtul tagasi";
 koostöös Poola, Läti, Leedu ja Euroopa Komisjoniga peame vajalikuks koostada ühiskava Baltimaade paremaks ja kiiremaks ühendamiseks Lääne-Euroopaga maismaad pidi (Via Baltica, Rail Baltica, Tallinn-Varssavi raudteeühendus jm.) ning analüüsime Tallinn-Peterburi reisirongiliini taasavamise otstarbekust.
 11. Mugava äritegemise taristu edendamine:
 liidestame riiklikud põhiregistrid (maakataster ja kinnistusraamat). Arendame registrite ristkasutust eesmärgiga viia andmete esitamisega seotud koormus ettevõtja jaoks võimalikult väikeseks;
@@ -123,7 +145,7 @@ EKSPORDI ERGUTAMINE
 toetamisel:
 maksumaksja rahast makstavatest ettevõtlustoetustest on kasu vaid siis, kui need parandavad Eesti majandusstruktuuri, mistõttu tuleb Arengufondi, EASi, Kredexi ja PRIA kaudu makstavate toetuste maht ja teravik suunata ennekõike alustavate ja eksportivate ettevõtete toetuseks;
 innovaatiliste ja ambitsioonikate ettevõtete sünniks käivitame programmi Start-up Eesti;
-riigieelarve vahendite piiratuse juures peame õigeks järk-järgult liikuda toetustelt laenude ja tagatiste kasutamisele ning keskenduda koostööd ja tootearendust ergutavatele meetmetele.
+riigieelarve vahendite piiratuse juures peame õigeks järk-järgult liikuda toetustelt laenude ja tagatiste kasutamisele ning keskenduda koostööd ja tootearendust ergutavatele meetmetele;
 Eesti ettevõtete rahvusvahelistumise ergutamiseks analüüsime omakapitali (private equity) kättesaadavust ning vajadusel arendame edasi Sihtasutus Kredexi tooteportfelli ületamaks omakapitali pakkumisel esinevaid turutõrkeid.
 18. Investeeringute ligimeelitamine ja Eesti ettevõtluskeskkonna jõulisem tutvustamine
 välisturgudel:
@@ -135,9 +157,8 @@ FINANTSKESKKOND
 19. Finantskeskkonna turvalisuse suurendamine:
 ausa konkurentsi kindlustamiseks tugevdame järelevalvet panganduse ning pensionifondide tegevuse üle;
 lihtsustame reegleid, et sisuliselt käivituks börs alternatiivse heade äriideede rahastamise allikana ka väike- ja keskmise suurusega ettevõtetele. Eesti elanikest peab saama omanikuühiskond ka ettevõtete omanikeks olemise kaudu.
-20. Kindlustusturu edasiarendmine: tegutseme sihiga laiendada kindlustustegevust oluliselt enam ka tervisest ning ajutisest või alalisest töövõimetusest ja maksejõuetusest tulenevatele riskidele.
-Stabiilse majanduskasvu saavutamise eelduseks on struktuursed reformid hariduses, energeetikas ja halduses ning Eesti transpordiühenduste arendamine, mis on põhjalikumalt käsitletud valitsusliidu programmi osades:
-Konkurentsivõimeline haridus, Energeetikajulgeolek, Tõhus ja moodne kodanike riik ning Ühendatud Eesti.
+20. Kindlustusturu edasiarendmine:
+tegutseme sihiga laiendada kindlustustegevust oluliselt enam ka tervisest ning ajutisest või alalisest töövõimetusest ja maksejõuetusest tulenevatele riskidele.
 PERESÕBRALIK RIIK
 Valitsusliidu pere- ja rahvastikupoliitika eesmärk on luua Eestist peresõbralik riik, kus inimesed soovivad hea meelega lapsi saada ja kasvatada ning väärikalt vananeda, mis kindlustaks, et Eesti rahvast saab kasvav rahvas. Valitsusliit soovib, et Eestis sünniks lapsi veelgi rohkem. Eesti olgu parim paik elamiseks. Valitsusliit peab hooliva ja peresõbraliku ühiskonna kujundamist parimaks viisiks, mis soodustab võõrsil töötavate ja elavate Eesti juurtega haritud inimeste kodumaale naasmist. Perekeskse hea ja turvalise elukeskkonna loomiseks peab Valitsusliit oluliseks läbi viia poliitikat ja struktuurseid reforme, mis lähtuvad järgmistest põhimõtetest:
 1. Toetava keskkonna edasiarendamine sündivuse suurenemiseks:
@@ -146,7 +167,7 @@ toetame raseduskriisi aegset nõustamist, eesmärgiga vähendada abortide arvu;
 kehtestame 1. jaanuarist 2013 vanemapensioni – maksame 01.01.2013 ja hiljem sündinud lapse ühele vanemale lapse kasvatamise eest 4% riigi keskmiselt sotsiaalmaksuga maksustatavalt töötasult vanema II pensionisambasse kuni lapse 3-aastaseks saamiseni (välja arvatud vanema tööl käimise aeg). Tagamaks põlvkondade vaheline solidaarsus, maksame 01.01.1991-31.12.2012 sündinud lapse ühele vanemale pensionilisa kahe aastahinde väärtuses. 1. jaanuarist 2015 maksame enne 01.01.2013 sündinud lapse ühele vanemale täiendavat pensionilisa ühe aastahinde väärtuses.
 2. Kindlustunde tagamine peredele lapse kasvatamiseks ka pärast vanemahüvitise perioodi lõppemist:
 peretoetuste maksmisel peab edaspidi kehtima põhimõte, et toetatakse rohkem neid, kes reaalselt rohkem abi vajavad ja kel on rohkem lapsi;
-perede aitamisel eelistame mõistlikku tasakaalustatud süsteemi teenuste pakkumise, universaaltoetuste ja otseste rahaliste toetuste vahel.
+perede aitamisel eelistame mõistlikku tasakaalustatud süsteemi teenuste pakkumise, universaaltoetuste ja otseste rahaliste toetuste vahel;
 jätkame lasterikaste perede kodutoetuse programmi, majanduslike võimaluste tekkimisel kehtestame tugisüsteemi lasterikastele peredele ja üksikvanematele;
 peame õigeks, et ühe pere lastel on õigus käia samas lasteaias;
 koondame omavalitsuste infokeskkonnad ühtsesse lapsehoiu infosüsteemi, et lapsevanematel oleks mugav ja lihtne leida sobiv lastehoiuvõimalus;
@@ -200,7 +221,7 @@ pakume jätkuvalt tasuta eesti keele õppimise võimalusi;
 laiendame eesti keele õppimise võimalusi teiste riikide haridusasutustes;
 kindlustame vähemuskeelsetes põhikoolides kõrgel tasemel eesti keele, kultuuri, ajaloo ja ühiskonnaõpetuse õpetamise.
 6. Kutseõppe kui haridusvaliku taseme ja populaarsuse tõstmine:
-ehitame kaasaegsel tasemel välja kõigi kutsekoolide õppekompleksid ja ühiselamud.
+ehitame kaasaegsel tasemel välja kõigi kutsekoolide õppekompleksid ja ühiselamud;
 Kutsekoolidest peavad saama kohalikud kompetentsikeskused, millel on laiem roll kogu piirkonna arendamisel;
 loome kutsekoolides võimaluse täiendavaks õpilaste vastuvõtuks;
 soodustame üld- ja kutsehariduslike õppeasutuste koostööd ning enesetäiendusvõimalusi kutsehariduse läbinutele, kes soovivad jätkata haridusteed kõrgkoolis. Selleks võimaldame kutsekooli õpilastel omandada soovi korral üldaineid gümnaasiumi omadega sarnases mahus;
@@ -235,7 +256,7 @@ toetame pikka aega lastega kodus olnud emade tööturule tagasipöördumist;
 tagame noortele karjääriõppe –ja nõustamise üldharidus- , kutse- ja kõrghariduse tasemel;
 Ida-Virumaa pikaajalise töötuse leevendamiseks pakume EAS-i kaudu individuaalseid suuremahuliste tööstusinvesteeringute toetamise pakette, mis aitaksid luua uusi töökohti regioonis.
 3. Elukestva õppe ja töötute ümberõppe vahendite suurendamine:
-tõstame elukestvasõppes osalemist 20%ni ning ümberõppes osalevate madalama haridusega isikute arvu.
+tõstame elukestvasõppes osalemist 20%ni ning ümberõppes osalevate madalama haridusega isikute arvu;
 jätkame riigi toel kutseõppe programmi 16-29 aastastele põhiharidusega või põhihariduseta töötutele. Toetame Euroopa Sotsiaalfondi pilootprojekti ülemaalist rakendamist, et anda täiskasvanutele tööalast koolitust kutseõppeasutustes.
 4. Puuetega inimeste elukvaliteedi parandamine:
 hindame kodanikuühiskonna väärtust ja peame vajalikuks puuetega inimeste esindusorganisatsioonide suuremat kaasamist riiklikku otsustusprotsessi;
@@ -276,15 +297,14 @@ rajame Tallinnas laste vaimse tervise keskuse.
 6. Eakatele suunatud teenuste arendamine: tagame eakatele paremad hooldusravi ja koduõenduse võimalused. Demograafilisest seisundist tulenevalt eelistame rahastada hooldusravi ennaktempos ning rajame igasse maakonda kaasaegsed hooldusravikeskused.
 7. Patsientide teadlikkuse tõstmine:
 peame õigeks, et patsiendiga seotud ravijuhu maksumus oleks patsiendile nähtav riigiportaali kaudu;
-suurendame patsienditeadlikkuse tõstmisega (nagu näiteks koopia- ja originaalravimite võrdlemine) seotud programmide mahtu.
+suurendame patsienditeadlikkuse tõstmisega (nagu näiteks koopia- ja originaalravimite võrdlemine) seotud programmide mahtu;
 peame vajalikuks kiirelt rakendada terviseteadlikkuse õpe uue riikliku õppekava mahus. Esmaabi ja elustamise põhiteadmised peavad olema selgeks saanud juba põhikoolis.
 8. Tõhus võitlus ühiskonda hävitavate nakkushaiguste, alkoholismi, tubaka ja narkomaaniaga:
 pöörame eelkõige tähelepanu noorte riskiteadlikkuse tõstmisele;
 HIV-nakkusega võitlemisel on riigi prioriteet uute nakatunute arvu vähendamine, pöörates erilist tähelepanu noorte ennetusmeetmetele;
 narkomaanidega tegelemisel kasutame lisaks olemasolevatele ravimeetoditele senisest enam personaalsemat lähenemist ja vajadusel narkomaania võõrutusravi alternatiivseid meetodeid;
 alkoholi ja tubaka tarvitamise vähendamiseks vaatame üle riikliku alkoholi- ja tubakapoliitika ja karmistame karistusi nende alaealistele kättesaadavaks tegemise eest. Arendame välja alkoholi liigtarvitamise varajase avastamise ja nõustamise süsteemi, et ennetada kroonilise alkoholisõltuvuse väljakujunemist ja tagada ravi ning rehabiitatsiooniteenused motiveeritud alkoholist loobujatele.
-9. Kõikide saarteelanike kindlustamine kvaliteetse arstiabiga: lisaks perearstiteenuse tagamisele kindlustab riik kõikide kõrgema tähtsusega väljakutsete puhul saartele
-helikopteriteenuse olemasolu.
+9. Kõikide saarteelanike kindlustamine kvaliteetse arstiabiga: lisaks perearstiteenuse tagamisele kindlustab riik kõikide kõrgema tähtsusega väljakutsete puhul saartele helikopteriteenuse olemasolu.
 10. Tervishoiuteenuste ekspordi ja meditsiiniuuenduste edendamine:
 peame vajalikuks Eesti meditsiini- ja infokommunikatsioonitehnoloogia oskusteabe tugevamat ühendamist riigi ja juhtivate ülikoolide poolt loodud teadusparkides, mis aitab viia Eesti meditsiiniinnovatsiooni uuele tasemele. Riik saab seda toetada investeeringutega teadusparkide taristusse ning EASi toel Eesti meditsiiniuuenduste rahvusvahelist turundustegevust koordineerides.
 ENERGIAJULGEOLEK
@@ -300,7 +320,7 @@ Eesti energiajulgeoleku suurendamiseks liidame Eesti elektrivõrgud Kesk-Euroopa
 arendame edasi ühendusi Põhjamaade ja Lätiga, esmajärjekorras ehitame valmis Estlink 2;
 Eesti gaasivarustuskindluse suurendamiseks ja konkurentsi tekitamiseks gaasiturul viime läbi gaasivõrgu omandilise lahutamise;
 Soome ja Balti riikide turgude sidumiseks üheks atraktiivseks gaasituruks käsitleme prioriteetse ülepiirilise energeetika taristuprojektina BalticConnectori ehitamise ettevalmistamist, milleks taotleme kaasrahastamist Euroopa Liidu uuest eelarveperspektiivist. Jätkame tööd LNG terminali Eestisse rajamise ettevalmistamiseks;
-Eesti osaleb aktiivselt Balti energiaturu integratsiooniplaani (Baltic Energy Market Interconnection Plan) väljatöötamisel ja elluviimisel ning suurendab energiakoostööd Põhjamaadega.
+Eesti osaleb aktiivselt Balti energiaturu integratsiooniplaani (Baltic Energy Market Interconnection Plan) väljatöötamisel ja elluviimisel ning suurendab energiakoostööd Põhjamaadega;
 muudame seadusandlust, et kiirendada suurte taristuprojektide puhul maakasutuse lubade menetlemist.
 3. Selgete elektrikaubanduse reeglite kehtestamine Euroopa Liidus kolmandate riikidega:
 seisame kolmandatest riikidest pärineva elektrienergia importimisel Euroopa Liidu ühtsete reeglite kehtestamise eest, ennekõike keskkonnanõuete ja ausa hinnakonkurentsi osas.
@@ -361,7 +381,7 @@ konkurentsi tagamiseks praamide üleveoliinidel käsitleme Virtsu-Kuivastu ja Ro
 siseturismi elavdamiseks ja uute töökohtade loomiseks investeerime EL vahendeid väikesadamate arendamiseks;
 kaalume ajaloolise siseveetee Peipsist Pärnu jõele taastamist ning EL koostööprogrammi abiga arendame Peipsi veeturismi võimalusi nii Soome kui Venemaa suunas.
 10. Läänemere laevaliikluse turvalisuse suurendamine:
-Jätkame aktiivset koostööd Helcom'iga (Helsinki Commission) Läänemere laevaliikluse turvalisemaks muutmiseks ja Läänemere reostatuse vähendamiseks.
+Jätkame aktiivset koostööd Helcom`iga (Helsinki Commission) Läänemere laevaliikluse turvalisemaks muutmiseks ja Läänemere reostatuse vähendamiseks.
 E-RIIGIST I-RIIGIKS
 Valitsusliidu infoühiskonna poliitika eesmärk on pakkuda Eesti inimestele nende aega ja mugavust väärtustavat ning turvalist elu- ja töökeskkonda moodsate tehnoloogiavahenditega. Infoühiskonna keskmes peab olema i-nimene, mitte e-lektron. Tehnoloogia arendamine ei ole eesmärk omaette – riigi eesmärgiks on pakkuda inimestele paremaid teenuseid, kasutades selleks parimat võimalikku tehnoloogiat.
 Eesmärgi saavutamiseks viib Valitsusliit ellu poliitikat ja struktuurseid reforme, mis lähtuvad järgmistest põhimõtetest:
@@ -373,7 +393,7 @@ loome e-Eesti versiooni nutitelefonidele ning tagame seeläbi mugavaima e-teenus
 ID-kaart ja mobiilID peavad tagama turvalise ligipääsu igale Eestis pakutavale teenusele;
 ministeeriumid saavad ühtse ülesehitusega veebilehed.
 3. Emakeele ja rahvuskultuuri hoidmine, tutvustamine ja arendamine ka e-keskkonnas:
-täiustame keelenõustamise ja keeleuuenduste e-keskkonda, jätkame tõlkesõnaraamatute digitaliseerimist koostöös Google'iga ja peame oluliseks jätkata emakeelsete programmide, häältuvastustarkvara ja muu keeletehnoloogia loomist;
+täiustame keelenõustamise ja keeleuuenduste e-keskkonda, jätkame tõlkesõnaraamatute digitaliseerimist koostöös Google`iga ja peame oluliseks jätkata emakeelsete programmide, häältuvastustarkvara ja muu keeletehnoloogia loomist;
 arendame kultuurisuhtlusportaale ja jätkame rahvuskultuuri digitaliseerimist.
 4. Turvalisem, säästlikum, mugavam, kiirem, läbipaistvam ja piirkonniti kättesaadavam avalik teenus:
 teabeedastuse uute tehnoloogiate abil saame reformida avaliku halduse ja muuta riik kodanike ja ettevõtjate jaoks veelgi tõhusamaks;
@@ -496,7 +516,7 @@ loome kultuuriekspordi edendamiseks EASi ekspordi arendamise toetuste kõrvale k
 toetame valdkondlike arenduskeskuste tegevust, sh muusika, disaini, arhitektuuri ja filmi valdkonnas, eesmärgiga soodustada neis valdkondades ettevõtlust, kasvatada ekspordipotentsiaali, luua toimivad klastreid ja soodustada koostööd loomeettevõtete ja teiste majandusharude vahel;
 kasutame kultuuriekspordi edendamisel aktiivselt Eesti diplomaatilist võimekust ning teeme koostööd teiste EL riikide välisteenistustega. Seame eesmärgiks muuta Eesti tunnustatud loomemajanduse- ja disainimaaks.
 7. Kultuurihariduse suurem sidumine üldharidusega:
-1. jaanuarist 2014 kehtestame kuni 130 euro suuruse iga-aastase pearaha igale kooliealisele (6-19 aastasele) lapsele, mida saab kasutada huvialaringis osalemise eest tasumiseks;
+ 1. jaanuarist 2014 kehtestame kuni 130 euro suuruse iga-aastase pearaha igale kooliealisele (6-19 aastasele) lapsele, mida saab kasutada huvialaringis osalemise eest tasumiseks;
 jätkame koolide varustamist muusikariistadega;
 tähtsustame muuseumit kui õpikeskkonda.
 8. Eestimaa kultuurilise palge mitmekesistamine:
@@ -525,7 +545,7 @@ seame eesmärgiks, et aastaks 2014 on korrapärase liikumisharrastusega hõlmatu
 koostöös kohalike omavalitsustega aitame luua uusi kodulähedasi tervisespordiparke, kergliiklusteid, jooksu-, suusa-, ratta- ja matkaradasid ning soodustame harrastusspordi looduslike võimaluste väljaarendamist;
 loome sportimisvõimalusi erivajadustega inimestele ja toetame nende sportlikku tegevust.
 2. Noorte sportimisharjumuste toetamine:
-1. jaanuarist 2014 kehtestame lapse kohta kuni 130 euro suuruse aastase huviringiraha, mida saab muuhulgas kasutada noortespordi finantseerimiseks, luues sellega lapsevanemale valikuvabaduse oma lapse sportliku arengu kavandamiseks;
+ 1. jaanuarist 2014 kehtestame lapse kohta kuni 130 euro suuruse aastase huviringiraha, mida saab muuhulgas kasutada noortespordi finantseerimiseks, luues sellega lapsevanemale valikuvabaduse oma lapse sportliku arengu kavandamiseks;
 pidades tähtsaks koolisporti, parandame sportimistingimusi koolides ning jätkame ujumise algõppe programmi toetamist;
 väärtustame enam saavutusspordiga tegelevaid noori ning nende treenereid. Kaalume 50/50 süsteemi kasutuselevõtmist, mille puhul toetab riik poole summa ulatuses noortespordi III, IV ja V kutsekvalifikatsiooniga treenerite tasustamist;
 laiendame noorsportlaste tervisekontrolli süsteemi.
@@ -538,8 +558,7 @@ väärtustame treenerikutset ja kvalifikatsiooni ning pöörame enam tähelepanu
 treenerkonnale järelkasvu ettevalmistamisel tuleb treenerite koolitamine muuta spordikesksemaks, suurendada praktikaõppe osakaalu ja oma ala spetsialistide kaasamist õppejõududena;
 loome akadeemilises treeneriõppes õppijaile võimaluse taotleda Kultuurkapitali kehakultuuri ja spordi sihtkapitali stipendiumeid.
 5. Tippspordi tugistruktuuride arendamine:
-toetame ratsionaalsemat ja elanikkonnas toimuvaid muudatusi arvestavat spordirajatiste kavandamist ning rajamist. Tippspordirajatiste planeerimisel ja ehitamisel võtame arvesse riiklikke prioriteete ning Eesti Spordiregistri andmebaasi. Arendame välja üleriigilised ja
-regionaalsed tippspordikeskused;
+toetame ratsionaalsemat ja elanikkonnas toimuvaid muudatusi arvestavat spordirajatiste kavandamist ning rajamist. Tippspordirajatiste planeerimisel ja ehitamisel võtame arvesse riiklikke prioriteete ning Eesti Spordiregistri andmebaasi. Arendame välja üleriigilised ja regionaalsed tippspordikeskused;
 toetame tippsportlasi ning tagame neile konkurentsivõimelised treenimistingimused ja võimalused osalemiseks tiitlivõistlustel;
 jätkame rahvusvaheliste tiitlivõistluste Eestis korraldamise toetamist.
 EESTI KEEL JA MEEL
@@ -564,7 +583,7 @@ eesti keelest erineva õppekeelega õppeasutustes tagame kõigil haridusastmeil 
 panustame õpetajate ettevalmistusse ja täiendkoolitusse;
 muukeelsetes kutseõppeasutustes ja -rühmades peame eriti silmas õppijate erialase keeleoskuse arendamist;
 toetame ülikoolide valmisolekut pakkuda esimestel õppesemestritel eesti keele tihendatud õpet ebapiisava keeleoskusega üliõpilastele;
-suurendame riigikeeleõppe võimalusi täiskasvanuile.
+suurendame riigikeeleõppe võimalusi täiskasvanuile;
 seame sihiks nõustamisteenuse loomise muukeelsete koolide eesti keelele ülemineku toetamiseks ja keelehaldusküsimuste lahendamiseks.
 6. Eesti keele murrete väärtustamine:
 näeme eesti keele murretes tagatist ja ammendamatut allikat eesti ühiskeele kestvale arengule. Toetame sihtprogrammide kaudu kõigi tugevamate piirkondlike keele- ja kultuuritavade õpet, edasiarendamist, praktiseerimist ja laialdast tutvustamist.
@@ -704,9 +723,7 @@ peame tähtsaks Läänemere strateegia rakendamist Läänemere piirkonna arenguk
 tähtsustame ja peame arendamist väärivaks NB 8 ehk Põhjamaade ja Balti riikide igakülgset koostööd;
 lisaks tihedatele ja headele suhetele Euroopa Liitu ja/või NATOsse kuuluvate naabritega, on Eesti huvides ka heanaaberlikud suhted Venemaaga. Toetame konkreetseid ja praktilisi algatusi vastastikuste suhete arendamiseks.
 7. Inimõiguste ja heade valitsemistavade rahvusvaheline edendamine:
-Eesti näeb arengukoostöösse ja humanitaarabisse panustamises olulist välis- ja julgeolekupoliitika vahendit ning annab oma võimetele vastava panuse maailma vaesuse vähendamisse ning demokraatia, õigusriigi ja heade valitsemistavade põhimõtete kinnistamisse
-arengukoostöö sihtriikides;
-tegutseme aktiivselt totalitarismi kuritegude teadvustamisel ja nende ühemõttelise hukkamõistu saavutamisel.
+Eesti näeb arengukoostöösse ja humanitaarabisse panustamises olulist välis- ja julgeolekupoliitika vahendit ning annab oma võimetele vastava panuse maailma vaesuse vähendamisse ning demokraatia, õigusriigi ja heade valitsemistavade põhimõtete kinnistamisse arengukoostöö sihtriikides; tegutseme aktiivselt totalitarismi kuritegude teadvustamisel ja nende ühemõttelise hukkamõistu saavutamisel.
 8. Toetame igati transatlantilise koostöö arendamist kõigis valdkondades ning Eesti-USA suhete süvendamist.
 9. Taotleme Eesti kodanikele viisavaba pääsu enamatesse riikidesse.
 10. Eesti huvide paremaks esindamiseks tugevdame Eesti välisesinduste võrgustikku keskendudes peamistele julgeolekualastele ja majanduslikele prioriteetidele ning Eesti kodanike huvide kaitsele.
@@ -715,7 +732,7 @@ Valitsusliidu julgeoleku- ja riigikaitsepoliitika eesmärk on parimate julgeolek
 Nende eesmärkide saavutamiseks arendab Valitsusliit Eesti rahvusliku julgeoleku võimekust ja riigikaitset järgmiste põhimõtete kohaselt:
 1. Eesti peamine julgeolekutagatis on kollektiivkaitse ja NATO:
 Eesti riigikaitse tugineb esmasele iseseisvale kaitsevõimele ning NATO kollektiivkaitsele. Eesti sõjaline kaitse on kavandatud kollektiivkaitseoperatsioonina;
-kollektiivkaitse veenvuse tugevdamiseks tuleb suurendada NATO kohalolekut, arendada kahepoolset kaitsekoostööd liitlastega ning tagada Kaitseväe koostegutsemisvõime liitlasvägedega
+kollektiivkaitse veenvuse tugevdamiseks tuleb suurendada NATO kohalolekut, arendada kahepoolset kaitsekoostööd liitlastega ning tagada Kaitseväe koostegutsemisvõime liitlasvägedega;
 Eesti esmane iseseisev kaitsevõime peab tagama eeldused kollektiivkaitse toimivaks rakendumiseks.
 2. Eesti riigikaitse kiire rakendatavus ja selle eelduseks oleva juhtimisselguse tagamine:
 riigikaitse arendamisel lähtutakse riigikaitse laiast käsitlusest vastavuses kehtestatud Riigikaitsestrateegiaga. Kindlustame, et kõik riigiasutused valmistuvad oma riigikaitseliste ülesannete täitmiseks võimalike ohtude korral ning tagame, et sõjaline kaitse ei arene ülejäänud ühiskonnast eraldiseisvalt;
@@ -727,7 +744,7 @@ jätkame riigi lennuvahendite ja laevade ning nende käitamiseks vajaliku teenin
 osaleme aktiivselt NATO arengute suunamisel, peame õigeks NATO nähtavuse ja kohaloleku suurendamist;
 taotleme NATO Balti õhuturbemissiooni muutmist alaliseks;
 tagame Eesti osaluse operatsioonidel senises mahus kooskõlas NATO sihttasemega (10% maaväe koosseisust);
-osaleme võimetekohaselt Euroopa Liidu ühise julgeoleku- ja kaitsepoliitika alastes ettevõtmistes, sealhulgas EL operatsioonidel.
+osaleme võimetekohaselt Euroopa Liidu ühise julgeoleku- ja kaitsepoliitika alastes ettevõtmistes, sealhulgas EL operatsioonidel;
 koos sõjaliste missioonide planeerimise ja läbiviimisega arendame ka tsiviilmissioonidesse panustamise võimekust;
 süvendame kaitsekoostööd USA-ga, sealhulgas operatsioonidel;
 panustame aktiivselt Põhjala-Balti riikide kaitsealasesse koostöösse eesmärgiga muuta see peamiseks regionaalseks kaitsekoostöö formaadiks Põhja-Euroopas.
@@ -777,7 +794,7 @@ täidame ametikohad avalikus teenistuses ja riigile kuuluvate ettevõtete juhatu
 vähendame avalikus sektoris hõivatud inimeste hulka uute tehnoloogiate ja tõhusama töökorralduse kasutuselevõtu teel, mitte teenuste kvaliteedi arvel;
 koondame avaliku teenistuse seaduse rakendamise, samuti riigi kui tööandja tegevuse koordineerimise eest vastutuse ja kompetentsi Rahandusministeeriumisse.
 9. Riigihalduse muutmine lihtsamaks ja tõhusamaks:
-parandame riigi poliitikate strateegilist planeerimist ja ministeeriumide vahelist koostööd. 2014. aastal algava Euroopa Liidu eelarveperioodi vahendite tulemuslikumaks ja tõhusamaks kasutamiseks tugevdame keskset koordineerimist, koondame funktsioone ja vähendame juhtimistasandeid. Võimalusel koostame kõikide fondide kohta ühe arengukava, mis muuhulgas tagab rakendamise käigus suurema paindlikkuse vahendite ümbertõstmiseks.
+parandame riigi poliitikate strateegilist planeerimist ja ministeeriumide vahelist koostööd. 2014. aastal algava Euroopa Liidu eelarveperioodi vahendite tulemuslikumaks ja tõhusamaks kasutamiseks tugevdame keskset koordineerimist, koondame funktsioone ja vähendame juhtimistasandeid. Võimalusel koostame kõikide fondide kohta ühe arengukava, mis muuhulgas tagab rakendamise käigus suurema paindlikkuse vahendite ümbertõstmiseks:
 tagame avalik-õiguslike isikute ja riigi poolt asutatud sihtasutuste tegevuse läbipaistvuse, aruandluse ja juhtorganite vastutuse;
 tõhusama juhtimise ja haldamise saavutamiseks koondame 2011. aasta lõpuks kogu riigiasutustele mittevajaliku kinnisvara ning 2013. aastaks riigiasutuste poolt kasutatava kinnisvara (välja arvatud sümbolkinnisvara) ja selle haldamise ning arendamisega seotud tegevused Riigi Kinnisvara Aktsiaseltsi;
 koostöös erasektoriga jätkame ministeeriumide ja nende valitsemisealade tugiteenuste (raamatupidamine, personalitöö, hanked jmt) koondamist ühtsetesse keskustesse, pakkudes sama teenust ka kohalikele omavalitsustele ning sulgeme mittevajalikud asutused. Võtame riigi tugitegevuses kasutusele ühtsed standardid ja infosüsteemid. Toetame omavalitsuste tugifunktsioonide (õigusteenistus, raamatupidamine) konsolideerimist;
@@ -798,15 +815,88 @@ tihendame koostööd kohalike omavalitsustega kvaliteetsete e-teenuste arendamis
 13. Aitame arendada ja finantseerida omavalitsuste arengu mõttekoda, kus kohtuvad teadlased, ametnikud, poliitikud omavalitsejad ja vabasektor."""
 
 valdkond = None
+inlist = -1
+inordlist = -1
+sup="NULL"
+insup = "NULL"
 
 for line in txt.split("\n"):
 	if line.isupper():
-		valdkond = vk[line]
+		valdkond = vk[line][0]
+		sup = "NULL"
+		inlist=-1
 		#print()
 		#print(line, vk[line])
 		continue
-
-	if valdkond is None:
-		print("INSERT INTO lubadus(mustpealkiri) VALUES ('"+ line +"');")
+								
+	if line[len(line)-1]==":":
+		l[i]=[sup, valdkond, line]
+		inlist=0
+		sup = str(i)
+		print(">>> (" + str(sup) + ") "  +line)
+	elif line[len(line)-1]==";":
+		if sup!="NULL":
+			print("* [" + str(sup) + "] "  +line)
+			l[i]=[sup, valdkond, line]
+		else:
+			print(line)
+			l[i]=["NULL", valdkond, line]
 	else:
-		print("INSERT INTO lubadus(mustpealkiri, valdkond) VALUES ('"+ line +"', "+str(valdkond)+");")
+		if sup!="NULL":
+			print("* [" + str(sup) + "] "  +line)
+			l[i]=[sup, valdkond, line]
+		else:
+			print(line)
+			l[i]=["NULL", valdkond, line]
+		inlist=-1
+		sup="NULL"
+
+	i+=1
+	if inlist >= 0: inlist+=1
+
+lid=-1
+lnr=-1
+
+for x in l:
+	st = l[x][2].split(". ")
+	if len(st)>0 and st[0].isnumeric():
+		if st[0]=="1":
+			lid=x-1
+			lnr=1
+		if lnr==int(st[0]):
+			l[x][0]=lid
+			lnr += 1
+		else:
+			lid=-1
+			lnr=-1
+
+lid=None
+oid=None
+vid=None
+
+for x in l:
+	if vid != l[x][1]:
+		for title, idv in vk.items():
+			if idv[0] == l[x][1]:
+				print(idv[0], title)
+				vid = idv[0]
+				lid = None
+				break
+
+	if l[x][0] != "NULL" :
+		st = l[x][2].split(". ")
+		if len(st)>0 and st[0].isnumeric():
+			print(x, l[x][0], l[x][2][0:60] + " /---/ " + l[x][2][len(l[x][2])-40:9999])
+		else:
+			print(x, l[x][0], "\t* " + l[x][2][0:60] + " /---/ " + l[x][2][len(l[x][2])-40:9999])
+	else:
+		print(x, l[x][2][0:60] + " /---/ " + l[x][2][len(l[x][2])-40:9999])
+
+	if l[x][0]!="NULL": lid = l[x][0]
+
+
+
+
+
+
+#pprint(l, width=156)

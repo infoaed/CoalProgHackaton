@@ -141,14 +141,12 @@ rakendame täiendavaid abinõusid võitluses maksupettuste ja maksudest kõrvale
 kaitsmaks paremini tarbijate huve muudame konkurentsiregulatsiooni tõhusamaks ja selgemaks. Suurendame Konkurentsiameti õigusi sekkuda olukordadesse, kus ettevõtted kuritarvitavad turupositsiooni või on vaba konkurents muul moel riivatud;
 algatame EASis projekti, et teha äritegevuseks tarvilik seadusandlus inglise keeles kättesaadavaks.
 EKSPORDI ERGUTAMINE
-17. Ettevõtlustoetuste kasuteguri ning laenude ja garantiide osa suurendamine ekspordi
-toetamisel:
+17. Ettevõtlustoetuste kasuteguri ning laenude ja garantiide osa suurendamine ekspordi toetamisel:
 maksumaksja rahast makstavatest ettevõtlustoetustest on kasu vaid siis, kui need parandavad Eesti majandusstruktuuri, mistõttu tuleb Arengufondi, EASi, Kredexi ja PRIA kaudu makstavate toetuste maht ja teravik suunata ennekõike alustavate ja eksportivate ettevõtete toetuseks;
 innovaatiliste ja ambitsioonikate ettevõtete sünniks käivitame programmi Start-up Eesti;
 riigieelarve vahendite piiratuse juures peame õigeks järk-järgult liikuda toetustelt laenude ja tagatiste kasutamisele ning keskenduda koostööd ja tootearendust ergutavatele meetmetele;
 Eesti ettevõtete rahvusvahelistumise ergutamiseks analüüsime omakapitali (private equity) kättesaadavust ning vajadusel arendame edasi Sihtasutus Kredexi tooteportfelli ületamaks omakapitali pakkumisel esinevaid turutõrkeid.
-18. Investeeringute ligimeelitamine ja Eesti ettevõtluskeskkonna jõulisem tutvustamine
-välisturgudel:
+18. Investeeringute ligimeelitamine ja Eesti ettevõtluskeskkonna jõulisem tutvustamine välisturgudel:
 seame eesmärgiks muuta Eesti rahvusvaheliste äride peakorteriks, regionaalseks meditsiini-, küberkaitse- ja messikeskuseks, tunnustatud loomemajanduse ja disainimaaks;
 kaalume õigusliku raamistiku loomist pikaajaliste partnerluslepingute sõlmimiseks riigi ja Eestisse suuremahulisi välisinvesteeringuid toovate ettevõtete vahel;
 aktiviseerime välisteenistuse toetust Eesti ettevõtetele välisturgudele sisenemisel ja tegutsemisel;
@@ -343,8 +341,7 @@ kaalume põlevkiviõli tootmisel põlevkivi riigitulu (royalty) põhimõtte rake
 peame oluliseks teadmispõhise majanduse edendamist energeetikas, tehnoloogiliste lahenduste arendamist ja oskusteabe eksporti (nt põlevkivienergeetikas). Jätkame energiatehnoloogia programmi;
 väärtustame intelligentsete elektrisüsteemide arendamist, mille tulemusel suureneb elektrienergia varustuskindlus ja elektrienergia kasutuse efektiivsus ning väheneb keskkonna saastamine.
 TRANSPORT
-Valitsusliidu transpordipoliitika eesmärk on kindlustada inimeste ja kaupade vaba, mugav, kiire ja taskukohane liikumine Eestis ning Eesti ja muu maailma vahel. Hästi korraldatud transport parandab inimeste heaolu ja tõstab majanduse võistlusvõimet. Inimeste vaba liikumine pole mõeldav ilma transpordivõrgustike ja -vahenditeta. Teede ja tänavate võrk, nende kvaliteet ja korrashoid on Eesti-sisese liikluse jaoks võtmetähtsusega. Eesti inimeste vaba liikumise kindlustamisel ja majanduskasvu soodustava transpordipoliitika
-rakendamisel lähtub Valitsusliit järgmistest põhimõtetest:
+Valitsusliidu transpordipoliitika eesmärk on kindlustada inimeste ja kaupade vaba, mugav, kiire ja taskukohane liikumine Eestis ning Eesti ja muu maailma vahel. Hästi korraldatud transport parandab inimeste heaolu ja tõstab majanduse võistlusvõimet. Inimeste vaba liikumine pole mõeldav ilma transpordivõrgustike ja -vahenditeta. Teede ja tänavate võrk, nende kvaliteet ja korrashoid on Eesti-sisese liikluse jaoks võtmetähtsusega. Eesti inimeste vaba liikumise kindlustamisel ja majanduskasvu soodustava transpordipoliitika rakendamisel lähtub Valitsusliit järgmistest põhimõtetest:
 1. Põhjamaade tasemel teedevõrgu väljaehitamine:
 kehtestame teedeehitusnõuded, mis kindlustavad meie teed kasutusmugavuselt ja vastupidavuselt Põhjamaade tasemel teekattega. Ajakohastame talviseid teehoiunõudeid ja tõstame teehoolde võimekust erioludes;
 jätkame riigi kruusateede katmist tolmuvaba kattega, kasutades Põhjamaade tehnoloogiaid. Koostame ja rakendame riikliku programmi "Eesti teed tolmuvabaks aastaks 2030";
@@ -833,20 +830,20 @@ for line in txt.split("\n"):
 		l[i]=[sup, valdkond, line]
 		inlist=0
 		sup = str(i)
-		print(">>> (" + str(sup) + ") "  +line)
+		#print(">>> (" + str(sup) + ") "  +line)
 	elif line[len(line)-1]==";":
 		if sup!="NULL":
-			print("* [" + str(sup) + "] "  +line)
+			#print("* [" + str(sup) + "] "  +line)
 			l[i]=[sup, valdkond, line]
 		else:
-			print(line)
+			#print(line)
 			l[i]=["NULL", valdkond, line]
 	else:
 		if sup!="NULL":
-			print("* [" + str(sup) + "] "  +line)
+			#print("* [" + str(sup) + "] "  +line)
 			l[i]=[sup, valdkond, line]
 		else:
-			print(line)
+			#print(line)
 			l[i]=["NULL", valdkond, line]
 		inlist=-1
 		sup="NULL"
@@ -863,10 +860,12 @@ for x in l:
 		if st[0]=="1":
 			lid=x-1
 			lnr=1
-		if lnr==int(st[0]):
+		if lnr>int(st[0])-3 and lnr<int(st[0])+3: # lubame hüppavaid numberloendeid
+			#print(lnr, l[x][2][0:20])
 			l[x][0]=lid
-			lnr += 1
+			lnr = int(st[0])+1
 		else:
+			#print(lnr, l[x][2][0:20])
 			lid=-1
 			lnr=-1
 
@@ -874,11 +873,12 @@ lid=None
 oid=None
 vid=None
 
+
 for x in l:
 	if vid != l[x][1]:
 		for title, idv in vk.items():
 			if idv[0] == l[x][1]:
-				print(idv[0], title)
+				#print(idv[0], title)
 				vid = idv[0]
 				lid = None
 				break
@@ -886,11 +886,14 @@ for x in l:
 	if l[x][0] != "NULL" :
 		st = l[x][2].split(". ")
 		if len(st)>0 and st[0].isnumeric():
-			print(x, l[x][0], l[x][2][0:60] + " /---/ " + l[x][2][len(l[x][2])-40:9999])
+			#print(x, l[x][0], l[x][2][0:60] + " /---/ " + l[x][2][len(l[x][2])-40:9999])
+			pass
 		else:
-			print(x, l[x][0], "\t* " + l[x][2][0:60] + " /---/ " + l[x][2][len(l[x][2])-40:9999])
+			#print(x, l[x][0], "\t* " + l[x][2][0:60] + " /---/ " + l[x][2][len(l[x][2])-40:9999])
+			pass
 	else:
-		print(x, l[x][2][0:60] + " /---/ " + l[x][2][len(l[x][2])-40:9999])
+		#print(x, l[x][2][0:60] + " /---/ " + l[x][2][len(l[x][2])-40:9999])
+		pass
 
 	if l[x][0]!="NULL": lid = l[x][0]
 
@@ -900,3 +903,35 @@ for x in l:
 
 
 #pprint(l, width=156)
+
+print("-- *** Lubaduste valdkonnad ***")
+
+for v in vk:
+		if vk[v][1] is not None:
+			print("INSERT INTO lubadus_valdkond(valdkondid,ylemvaldkondid,pealkiri) VALUES ("+str(vk[v][0])+","+ str(vk[v][1]) + ",'"+ v +"');")
+		else:
+			print("INSERT INTO lubadus_valdkond(valdkondid,pealkiri) VALUES ("+str(vk[v][0])+",'"+ v +"');")
+
+
+print("-- *** Lubadused ise ***")
+
+for x in l:
+	if vid != l[x][1]:
+		for title, idv in vk.items():
+			if idv[0] == l[x][1]:
+				print("--", idv[0], title)
+				vid = idv[0]
+				lid = None
+				break
+
+	if l[x][0] != "NULL" :
+		print("INSERT INTO lubadus(ylemlubadusid,lubadusid,mustpealkiri,valdkondid) VALUES ("+str(l[x][0])+", "+str(x)+", '"+ l[x][2] +"', "+str(l[x][1])+");")
+	else:
+		print("INSERT INTO lubadus(lubadusid,mustpealkiri,valdkondid) VALUES (" + str(x)+", '"+ l[x][2] +"', "+str(l[x][1])+");")
+
+	if l[x][0]!="NULL": lid = l[x][0]
+
+	#if valdkond is None:
+	#	print("INSERT INTO lubadus(ylemlubadus,lubadusid,mustpealkiri) VALUES ("+sup+","+ str(i) + ",'"+ line +"');")
+	#else:
+	#	print("INSERT INTO lubadus(ylemlubadus,lubadusid,mustpealkiri) VALUES ("+sup+","+ str(i) + ",'"+ line +"', "+str(valdkond)+");")

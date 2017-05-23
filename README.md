@@ -10,6 +10,10 @@ Team:
 * **Artur**, **Ilja**, **Andrus** — programmers (from back end to front end and back)
 * **Märt** — data scraper (actually just idling around and preparing for the pitches)
 
+Received special prize by Ekspress Media:
+
+* http://garage48.org/blog/garage48-baltic-open-big-data-2017-winners
+
 Prototype:
 
 * http://gov.infoaed.ee

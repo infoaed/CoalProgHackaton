@@ -167,9 +167,9 @@ for x in l:
 				break
 
 	if l[x][0] != "NULL" :
-		print("INSERT INTO lubadus(ylemlubadusid,lubadusid,mustpealkiri,valdkondid) VALUES ("+str(l[x][0])+", "+str(x)+", '"+ l[x][2] +"', "+str(l[x][1])+");")
+		print("INSERT INTO lubadus(ylemlubadusid,lubadusid,mustpealkiri,valdkondid,koalitsioonid) VALUES ("+str(l[x][0])+", "+str(x)+", '"+ l[x][2] +"', "+str(l[x][1])+",19);")
 	else:
-		print("INSERT INTO lubadus(lubadusid,mustpealkiri,valdkondid) VALUES (" + str(x)+", '"+ l[x][2] +"', "+str(l[x][1])+");")
+		print("INSERT INTO lubadus(lubadusid,mustpealkiri,valdkondid,koalitsioonid) VALUES (" + str(x)+", '"+ l[x][2] +"', "+str(l[x][1])+",19);")
 
 	if l[x][0]!="NULL": lid = l[x][0]
 
